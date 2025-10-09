@@ -1,9 +1,9 @@
-# About
+# Projects
 
 - Currently working on [PRA](https://github.com/paulgovan/PRA)
 - Currently learning ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
 - Looking to collaborate on [WeibullR.shiny](https://github.com/paulgovan/WeibullR.shiny)
-- Ask me about my Risk and Reliability projects
+- Ask me about my projects
 
 ## GitHub Stats
 

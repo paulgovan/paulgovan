@@ -8,10 +8,11 @@
 ## GitHub Stats
 
 ![Paul's GitHub stats](https://github-readme-stats.vercel.app/api?username=paulgovan&show_icons=true&theme=radical)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=paulgovan&layout=compact&theme=tokyonight)
 
 ## Top Languages
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=paulgovan&layout=compact&theme=radical)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=paulgovan&layout=compact&theme=tokyonight)
 
 ## Connect
 

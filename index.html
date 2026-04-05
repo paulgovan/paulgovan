@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paul Govan</title>
+  <meta name="description" content="Paul Govan — Reliability engineer at GE Aerospace specializing in RM&amp;T systems, probabilistic risk analysis, and open-source software development.">
+  <meta name="author" content="Paul Govan">
+  <meta property="og:title" content="Paul Govan">
+  <meta property="og:description" content="Reliability engineer at GE Aerospace specializing in RM&amp;T systems, probabilistic risk analysis, and open-source software.">
+  <meta property="og:image" content="./headshot.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Paul Govan">
+  <meta name="twitter:description" content="Reliability engineer at GE Aerospace. Open-source developer. PhD, PE.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='18' width='100' height='100' fill='%230f2b46'/><text x='50' y='68' font-family='serif' font-size='52' font-weight='bold' fill='white' text-anchor='middle'>PG</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f2b46;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --accent-glow: rgba(59,130,246,0.15);
+      --surface: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --gradient-start: #0f2b46;
+      --gradient-end: #1e3a5f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: #fff;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent-light); }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(15,43,70,0.95);
+      backdrop-filter: blur(12px);
+      padding: 0.8rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1.2rem; color: #fff;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+
+    nav ul a {
+      color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: #fff; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 50%, #1a4a6e 100%);
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 80%, rgba(59,130,246,0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 20%, rgba(96,165,250,0.08) 0%, transparent 50%);
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+
+    .hero .headshot {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      margin-bottom: 2rem;
+      border: 4px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; color: #fff; margin-bottom: 1rem;
+      font-weight: 700; letter-spacing: -0.02em;
+    }
+
+    .hero .summary {
+      font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem;
+      color: rgba(255,255,255,0.8); line-height: 1.8;
+    }
+
+    .hero .links {
+      display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.65rem 1.5rem; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 500; transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    .btn-brand {
+      color: #fff; border: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+
+    .btn-brand:hover {
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      filter: brightness(1.1);
+    }
+
+    .btn-brand svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+
+    .btn-linkedin { background: #0A66C2; }
+    .btn-github { background: #24292f; }
+    .btn-orcid { background: #A6CE39; color: #fff; }
+    .btn-scholar { background: #4285F4; }
+    .btn-email { background: #EA4335; }
+
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      box-shadow: 0 4px 14px rgba(59,130,246,0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light); color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(59,130,246,0.45);
+    }
+
+    .btn-ghost {
+      border: 1.5px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.9);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.6); color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn-outline {
+      border: 1.5px solid var(--border); color: var(--text);
+      background: #fff;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent); color: var(--accent);
+      box-shadow: 0 2px 8px var(--accent-glow);
+    }
+
+    /* Sections */
+    section {
+      max-width: 900px; margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-alt { background: var(--surface); }
+    .section-alt section { max-width: 900px; margin: 0 auto; }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; color: var(--primary); margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      color: var(--muted); font-size: 0.95rem; margin-bottom: 2.5rem;
+      display: none;
+    }
+
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem 1.8rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--accent);
+      border-radius: 12px 0 0 12px;
+      opacity: 0; transition: opacity 0.25s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transform: translateX(4px);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-inner {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+    }
+
+    .card-logo {
+      width: 44px; height: 44px; min-width: 44px;
+      border-radius: 8px; object-fit: contain;
+      background: #fff; padding: 4px;
+      border: 1px solid var(--border);
+      margin-top: 2px;
+    }
+
+    .card-text { flex: 1; }
+
+    .card h3 { font-size: 1.05rem; color: var(--primary); margin-bottom: 0.15rem; font-weight: 600; }
+    .card .org { color: var(--accent); font-weight: 500; font-size: 0.95rem; }
+    .card .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .card p { font-size: 0.9rem; color: var(--muted); }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.25s;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+
+    .project-hex {
+      width: 64px; height: 64px; min-width: 64px;
+      object-fit: contain;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 8px 24px var(--accent-glow);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .project-card h3 {
+      font-size: 1rem; margin-bottom: 0.4rem;
+      color: var(--primary); font-weight: 600;
+    }
+
+    .project-card:hover h3 { color: var(--accent); }
+
+    .project-card p { font-size: 0.9rem; color: var(--muted); }
+
+    .tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 500;
+      background: var(--accent-glow); color: var(--accent);
+      padding: 0.2rem 0.55rem; border-radius: 5px;
+      margin-top: 0.6rem; margin-right: 0.3rem;
+      text-transform: uppercase; letter-spacing: 0.03em;
+    }
+
+    /* Publications */
+    .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .pub-item {
+      padding: 1.2rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.25s;
+    }
+
+    .pub-item:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      border-color: var(--accent);
+    }
+
+    .pub-item .pub-title {
+      font-weight: 600; color: var(--primary);
+      margin-bottom: 0.3rem; font-size: 0.95rem;
+    }
+
+    .pub-item .pub-venue {
+      font-size: 0.88rem; color: var(--accent); font-style: italic;
+    }
+
+    .pub-item .pub-meta {
+      font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    .pub-item .pub-meta a {
+      font-size: 0.82rem;
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .pub-item .pub-meta a:hover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    /* Service */
+    .service-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.2rem;
+    }
+
+    /* Contact */
+    .contact-section {
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .contact-inner { max-width: 900px; margin: 0 auto; }
+
+    .contact-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: #fff; margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center; padding: 1.5rem;
+      color: var(--muted); font-size: 0.82rem;
+      background: var(--primary); color: rgba(255,255,255,0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero { padding: 8rem 1.5rem 4rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .summary { font-size: 1rem; }
+      .hero .headshot { width: 140px; height: 140px; }
+      section { padding: 3.5rem 1.2rem; }
+      nav ul { gap: 0.7rem; }
+      nav ul a { font-size: 0.8rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* Back-to-top button */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(59,130,246,0.35);
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.3s; z-index: 90;
+      pointer-events: none;
+    }
+
+    .back-to-top.show {
+      opacity: 1; transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .back-to-top svg { width: 20px; height: 20px; fill: #fff; }
+
+    /* Dark mode toggle */
+    .theme-toggle {
+      background: none; border: 1.5px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.8); cursor: pointer;
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .theme-toggle:hover {
+      border-color: rgba(255,255,255,0.6); color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .theme-toggle svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* Dark mode */
+    [data-theme="dark"] {
+      --primary: #93c5fd;
+      --accent: #60a5fa;
+      --accent-light: #93c5fd;
+      --accent-glow: rgba(96,165,250,0.15);
+      --surface: #111827;
+      --card: #1f2937;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #374151;
+      --gradient-start: #030712;
+      --gradient-end: #0f172a;
+    }
+
+    [data-theme="dark"] body { background: #0f172a; }
+    [data-theme="dark"] nav { background: rgba(3,7,18,0.95); }
+    [data-theme="dark"] .card-logo { background: #1f2937; border-color: var(--border); }
+    [data-theme="dark"] footer { background: #030712; }
+    [data-theme="dark"] .btn-outline { background: var(--card); }
+    [data-theme="dark"] .theme-toggle { border-color: rgba(255,255,255,0.2); }
+
+    /* CRAN badges */
+    .cran-badges {
+      display: flex; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap;
+    }
+
+    .cran-badges img { height: 20px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">PG</div>
+    <ul style="align-items: center;">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <svg class="sun-icon" viewBox="0 0 24 24" style="display:none;"><path d="M12 18a6 6 0 110-12 6 6 0 010 12zm0-2a4 4 0 100-8 4 4 0 000 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"/></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24"><path d="M10 7a7 7 0 0012 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.979 6.979 0 0010 7zm-6 5a8 8 0 0011.955 6.956C13.271 18.6 11 15.98 11 12.9c0-3.08 2.271-5.7 4.955-6.056A8 8 0 004 12z"/></svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <img src="./headshot.png" alt="Paul Govan" class="headshot" onerror="this.src='https://github.com/paulgovan.png'">
+      <h1>Paul Govan</h1>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/paulgovan/" class="btn btn-brand btn-linkedin" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/paulgovan" class="btn btn-brand btn-github" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="https://orcid.org/0000-0002-1821-8492" class="btn btn-brand btn-orcid" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 01-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-1.847-1.303-3.722-3.931-3.722h-2.388z"/></svg>
+          ORCID
+        </a>
+        <a href="https://scholar.google.com/citations?user=3FGK2_sAAAAJ&hl=en" class="btn btn-brand btn-scholar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
+          Scholar
+        </a>
+        <a href="mailto:paul.govan2@gmail.com" class="btn btn-brand btn-email">
+          <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About</h2>
+    <p class="section-subtitle">Engineering meets data science</p>
+    <p>
+      I'm a reliability engineer with GE Aerospace, currently working on RM&amp;T systems
+      in the Power and Avionics business. My work sits at the intersection of engineering
+      and data analysis, whether that's reliability modeling, FMEA, or building tools that
+      make these methods more accessible.
+    </p>
+    <p style="margin-top: 1rem;">
+      Over the years I've developed several software packages for reliability, risk, and
+      data analysis, and I'm active in the research and development community. Outside of
+      work I volunteer as a guest speaker for STEM in virtual classrooms, contribute to
+      NASA citizen science programs, and spent a few years as a volunteer firefighter.
+    </p>
+  </section>
+
+  <!-- Experience -->
+  <div class="section-alt">
+    <section id="experience">
+      <h2>Experience</h2>
+      <p class="section-subtitle">Building expertise across engineering, risk, and data</p>
+      <div class="timeline">
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/ge-aerospace.png" alt="GE Aerospace" class="card-logo">
+            <div class="card-text">
+              <h3>Senior Engineer</h3>
+              <span class="org">GE Aerospace</span>
+              <div class="meta">Greenville, SC &bull; 2023 &ndash; Present</div>
+              <p>Reliability, Maintainability, &amp; Testability (RM&amp;T)</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/ge-vernova.png" alt="GE Vernova" class="card-logo">
+            <div class="card-text">
+              <h3>Senior Technical Leader</h3>
+              <span class="org">GE Vernova</span>
+              <div class="meta">Greenville, SC &bull; 2016 &ndash; 2023</div>
+              <p>Reliability and Data Analytics</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/technipfmc.png" alt="TechnipFMC" class="card-logo">
+            <div class="card-text">
+              <h3>Risk Management Specialist</h3>
+              <span class="org">TechnipFMC</span>
+              <div class="meta">Houston, TX &bull; 2014 &ndash; 2016</div>
+              <p>Risk &amp; Reliability Management</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/tamu.png" alt="Texas A&amp;M University" class="card-logo">
+            <div class="card-text">
+              <h3>Graduate Assistant for Research and Teaching</h3>
+              <span class="org">Texas A&amp;M University</span>
+              <div class="meta">College Station, TX &bull; 2010 &ndash; 2014</div>
+              <p>Texas Engineering Experiment Station</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/shaw.png" alt="The Shaw Group" class="card-logo">
+            <div class="card-text">
+              <h3>Civil Engineer</h3>
+              <span class="org">The Shaw Group, Inc.</span>
+              <div class="meta">Baton Rouge, LA &bull; 2006 &ndash; 2009</div>
+              <p>Engineering &amp; Infrastructure</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <p class="section-subtitle">Foundations in civil engineering and risk analysis</p>
+    <div class="timeline">
+      <div class="card">
+        <div class="card-inner">
+          <img src="./logos/tamu.png" alt="Texas A&amp;M University" class="card-logo">
+          <div class="card-text">
+            <h3>Doctor of Philosophy</h3>
+            <span class="org">Texas A&amp;M University</span>
+            <div class="meta">Zachry Department of Civil Engineering &bull; 2010 &ndash; 2014</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <img src="./logos/tamu.png" alt="Texas A&amp;M University" class="card-logo">
+          <div class="card-text">
+            <h3>Master of Engineering</h3>
+            <span class="org">Texas A&amp;M University</span>
+            <div class="meta">Zachry Department of Civil Engineering &bull; 2009 &ndash; 2010</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <img src="./logos/lsu.svg" alt="Louisiana State University" class="card-logo">
+          <div class="card-text">
+            <h3>Bachelor of Science</h3>
+            <span class="org">Louisiana State University</span>
+            <div class="meta">Department of Civil &amp; Environmental Engineering &bull; 2003 &ndash; 2008</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Licenses & Certifications -->
+  <div class="section-alt">
+    <section id="certifications">
+      <h2>Licenses &amp; Certifications</h2>
+      <div class="timeline">
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/ncees.png" alt="NCEES" class="card-logo">
+            <div class="card-text">
+              <h3>Professional Engineer (PE)</h3>
+              <span class="org">NCEES</span>
+              <div class="meta">Issued Jan 2017</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/faa.png" alt="FAA" class="card-logo">
+            <div class="card-text">
+              <h3>Remote Pilot</h3>
+              <span class="org">Federal Aviation Administration</span>
+              <div class="meta">Issued Feb 2024</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/sffma.png" alt="SFFMA" class="card-logo">
+            <div class="card-text">
+              <h3>Certified Firefighter</h3>
+              <span class="org">State Firefighters' &amp; Fire Marshals' Association of Texas</span>
+              <div class="meta">Issued Sep 2013</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/nremt.png" alt="NREMT" class="card-logo">
+            <div class="card-text">
+              <h3>Emergency Medical Responder</h3>
+              <span class="org">National Registry of Emergency Medical Technicians</span>
+              <div class="meta">Issued Sep 2012</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Publications -->
+  <div>
+    <section id="publications">
+      <h2>Publications</h2>
+      <p class="section-subtitle">Peer-reviewed research in reliability, risk, and data analytics</p>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-title">ReliaGrowR: Modeling and Plotting Functions for Reliability Growth Analysis</div>
+          <div class="pub-venue">Annual Reliability and Maintainability Symposium (RAMS)</div>
+          <div class="pub-meta"><span>2026</span> <a href="https://doi.org/10.1109/rams50514.2026.11424445" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">ReliaLearnR: Learning Modules for Reliability Analysis</div>
+          <div class="pub-venue">Journal of Open Source Education</div>
+          <div class="pub-meta"><span>2026</span> <a href="https://doi.org/10.21105/jose.00302" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">ReliaShiny: A Shiny Application for Reliability Analysis</div>
+          <div class="pub-venue">IEEE Reliability Magazine</div>
+          <div class="pub-meta"><span>2026</span> <a href="https://doi.org/10.1109/MRL.2026.3669057" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Developing Management Policies and Analyzing Impact of Change Orders on Labor Productivity in Construction Projects</div>
+          <div class="pub-venue">Journal of Engineering, Design and Technology</div>
+          <div class="pub-meta"><span>2022</span> <a href="https://doi.org/10.1108/jedt-10-2020-0428" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Structural Network Measures for Risk Assessment of Construction Projects</div>
+          <div class="pub-venue">ASCE-ASME J. of Risk and Uncertainty in Engineering Systems, Part A</div>
+          <div class="pub-meta"><span>2020</span> <a href="https://doi.org/10.1061/AJRUA6.0001041" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">BayesianNetwork: Interactive Bayesian Network Modeling and Analysis</div>
+          <div class="pub-venue">Journal of Open Source Software</div>
+          <div class="pub-meta"><span>2018</span> <a href="https://doi.org/10.21105/joss.00425" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">eAnalytics: Dynamic Web-based Analytics for the Energy Industry</div>
+          <div class="pub-venue">Journal of Open Research Software</div>
+          <div class="pub-meta"><span>2016</span> <a href="https://doi.org/10.5334/jors.144" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">The Resource-based View on Project Risk Management</div>
+          <div class="pub-venue">Journal of Construction Engineering and Management</div>
+          <div class="pub-meta"><span>2016</span> <a href="https://doi.org/10.1061/(ASCE)CO.1943-7862.0001136" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Discovering the Impact of Late Change Orders and Rework on Labor Productivity: A Water Treatment Case Study Analysis Using System Dynamics Modeling</div>
+          <div class="pub-venue">Construction Research Congress (ASCE)</div>
+          <div class="pub-meta"><span>2018</span> <a href="https://doi.org/10.1061/9780784481295.069" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Causal Network Methods for Project Risk-based Decision Making</div>
+          <div class="pub-venue">INFORMS Annual Meeting</div>
+          <div class="pub-meta"><span>2014</span> <a href="https://doi.org/10.5281/zenodo.1145391" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Causal Network Methods for Integrated Project Portfolio Risk Analysis</div>
+          <div class="pub-venue">Texas A&amp;M University (Dissertation)</div>
+          <div class="pub-meta"><span>2014</span> <a href="https://hdl.handle.net/1969.1/153492" target="_blank" rel="noopener">Handle</a></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Benchmarking Natural Gas Pipeline Projects</div>
+          <div class="pub-venue">ASCE Pipelines Conference</div>
+          <div class="pub-meta"><span>2013</span> <a href="https://doi.org/10.1061/9780784413012.143" target="_blank" rel="noopener">DOI</a></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Projects -->
+  <div class="section-alt">
+  <section id="projects">
+    <h2>Projects</h2>
+    <p class="section-subtitle">Open-source tools for reliability, risk, and data analysis</p>
+    <div class="projects-grid">
+      <a href="https://github.com/paulgovan/PRA" class="project-card" target="_blank" rel="noopener">
+        <img src="./logos/PRA-hex.png" alt="PRA hex sticker" class="project-hex">
+        <div>
+          <h3>PRA</h3>
+          <p>Probabilistic Risk Analysis tools for engineering reliability assessment.</p>
+          <div class="cran-badges">
+            <img src="https://www.r-pkg.org/badges/version/PRA" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/PRA" alt="Downloads">
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/paulgovan/ReliaShiny" class="project-card" target="_blank" rel="noopener">
+        <img src="./logos/ReliaShiny-hex.png" alt="ReliaShiny hex sticker" class="project-hex">
+        <div>
+          <h3>ReliaShiny</h3>
+          <p>Interactive web application for reliability analysis.</p>
+          <div class="cran-badges">
+            <img src="https://www.r-pkg.org/badges/version/ReliaShiny" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/ReliaShiny" alt="Downloads">
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/paulgovan/ReliaGrowR" class="project-card" target="_blank" rel="noopener">
+        <div>
+          <h3>ReliaGrowR</h3>
+          <p>Reliability growth analysis tools and models.</p>
+          <div class="cran-badges">
+            <img src="https://www.r-pkg.org/badges/version/ReliaGrowR" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/ReliaGrowR" alt="Downloads">
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/paulgovan/BayesianNetwork" class="project-card" target="_blank" rel="noopener">
+        <img src="./logos/BayesianNetwork-hex.png" alt="BayesianNetwork hex sticker" class="project-hex">
+        <div>
+          <h3>BayesianNetwork</h3>
+          <p>Interactive Bayesian network modeling and visualization.</p>
+          <div class="cran-badges">
+            <img src="https://www.r-pkg.org/badges/version/BayesianNetwork" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork" alt="Downloads">
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/paulgovan/eAnalytics" class="project-card" target="_blank" rel="noopener">
+        <img src="./logos/eAnalytics-hex.png" alt="eAnalytics hex sticker" class="project-hex">
+        <div>
+          <h3>eAnalytics</h3>
+          <p>Dynamic web-based analytics for the energy industry.</p>
+          <div class="cran-badges">
+            <img src="https://www.r-pkg.org/badges/version/eAnalytics" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/eAnalytics" alt="Downloads">
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/paulgovan/AutoDeskR" class="project-card" target="_blank" rel="noopener">
+        <div>
+          <h3>AutoDeskR</h3>
+          <p>An R interface to the AutoDesk API platform.</p>
+          <div class="cran-badges">
+            <img src="https://www.r-pkg.org/badges/version/AutoDeskR" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/AutoDeskR" alt="Downloads">
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+  </div>
+
+  <!-- Service -->
+    <section id="service">
+      <h2>Service</h2>
+      <p class="section-subtitle">Giving back through STEM outreach and community</p>
+      <div class="service-grid">
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/nasa.png" alt="NASA" class="card-logo">
+            <div class="card-text">
+              <h3>Citizen Scientist</h3>
+              <span class="org">NASA</span>
+              <div class="meta">2024 &ndash; Present</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/pathful.png" alt="Pathful" class="card-logo">
+            <div class="card-text">
+              <h3>Guest Speaker</h3>
+              <span class="org">Pathful Inc.</span>
+              <div class="meta">2017 &ndash; Present</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/brazos-vfd.png" alt="Brazos County" class="card-logo">
+            <div class="card-text">
+              <h3>Firefighter / Emergency Care Attendant</h3>
+              <span class="org">Brazos County Precinct 4 Volunteer Fire Dept.</span>
+              <div class="meta">2011 &ndash; 2014</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Awards & Honors -->
+  <div class="section-alt">
+    <section id="awards">
+      <h2>Awards &amp; Honors</h2>
+      <div class="timeline">
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/pathful.png" alt="Pathful" class="card-logo">
+            <div class="card-text">
+              <h3>Luminary Award</h3>
+              <span class="org">Pathful</span>
+              <div class="meta">Dec 2025</div>
+              <p>Presented for sharing aerospace engineering expertise with students and inspiring others in network to volunteer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/pathful.png" alt="Pathful" class="card-logo">
+            <div class="card-text">
+              <h3>Trailblazer Award</h3>
+              <span class="org">Pathful</span>
+              <div class="meta">Oct 2022</div>
+              <p>Pathful Connect Trailblazer Award Winner, for completing at least 5 sessions with classrooms on the Pathful Connect platform.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/technip.png" alt="Technip" class="card-logo">
+            <div class="card-text">
+              <h3>Jacques Franquelin Award</h3>
+              <span class="org">Technip</span>
+              <div class="meta">Jan 2015</div>
+              <p>Technip's most prestigious award, presented for development of novel risk analytics framework.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/tamu.png" alt="Texas A&amp;M University" class="card-logo">
+            <div class="card-text">
+              <h3>Zachry Endowed Fellowship</h3>
+              <span class="org">Texas A&amp;M University</span>
+              <div class="meta">Jan 2013</div>
+              <p>Competitive departmental fellowship, presented for research in risk analysis at Texas A&amp;M University.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/tamu.png" alt="Texas A&amp;M University" class="card-logo">
+            <div class="card-text">
+              <h3>Chevron Corporation Graduate Fellowship</h3>
+              <span class="org">Texas A&amp;M University</span>
+              <div class="meta">Jan 2012</div>
+              <p>Industry-sponsored fellowship, presented for research in risk analysis at Texas A&amp;M University.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/tamu.png" alt="Texas A&amp;M University" class="card-logo">
+            <div class="card-text">
+              <h3>Outstanding Graduate Student Award</h3>
+              <span class="org">Texas A&amp;M University</span>
+              <div class="meta">Jan 2011</div>
+              <p>Civil engineering departmental award for research and teaching at Texas A&amp;M University.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 style="margin-top: 2.5rem; margin-bottom: 1.2rem; font-size: 1.2rem; color: var(--primary); font-weight: 600;">Honor Societies</h3>
+      <div class="timeline">
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/tbp.svg" alt="Tau Beta Pi" class="card-logo" style="background: var(--primary); padding: 6px;">
+            <div class="card-text">
+              <h3>Tau Beta Pi</h3>
+              <span class="org">Texas A&amp;M University</span>
+              <div class="meta">2012 &ndash; Present</div>
+              <p>Prestigious engineering honor society</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/chiepsilon.png" alt="Chi Epsilon" class="card-logo">
+            <div class="card-text">
+              <h3>Chi Epsilon</h3>
+              <span class="org">Louisiana State University</span>
+              <div class="meta">2008 &ndash; Present</div>
+              <p>National civil engineering honor society</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <img src="./logos/odk.png" alt="Omicron Delta Kappa" class="card-logo">
+            <div class="card-text">
+              <h3>Omicron Delta Kappa</h3>
+              <span class="org">Louisiana State University</span>
+              <div class="meta">2006 &ndash; Present</div>
+              <p>National leadership honor society</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section" id="contact">
+    <div class="contact-inner">
+      <h2>Contact</h2>
+      <div class="contact-links" style="margin-top: 2rem;">
+        <a href="https://www.linkedin.com/in/paulgovan/" class="btn btn-brand btn-linkedin" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/paulgovan" class="btn btn-brand btn-github" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="https://orcid.org/0000-0002-1821-8492" class="btn btn-brand btn-orcid" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 01-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-1.847-1.303-3.722-3.931-3.722h-2.388z"/></svg>
+          ORCID
+        </a>
+        <a href="https://scholar.google.com/citations?user=3FGK2_sAAAAJ&hl=en" class="btn btn-brand btn-scholar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
+          Scholar
+        </a>
+        <a href="mailto:paul.govan2@gmail.com" class="btn btn-brand btn-email">
+          <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" onclick="window.scrollTo({top:0})" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+  </button>
+
+  <footer>
+    &copy; 2026 Paul Govan
+  </footer>
+
+  <script>
+    // Dark mode
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateToggleIcons(next);
+    }
+
+    function updateToggleIcons(theme) {
+      const sun = document.querySelector('.sun-icon');
+      const moon = document.querySelector('.moon-icon');
+      if (theme === 'dark') {
+        sun.style.display = 'block';
+        moon.style.display = 'none';
+      } else {
+        sun.style.display = 'none';
+        moon.style.display = 'block';
+      }
+    }
+
+    // Load saved theme
+    const saved = localStorage.getItem('theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    updateToggleIcons(saved);
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section, .section-alt > section').forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+
+    // Back to top
+    const btn = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 600);
+    });
+  </script>
+
+</body>
+</html>

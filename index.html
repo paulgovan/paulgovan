@@ -351,28 +351,122 @@
     }
 
     /* Responsive */
-    @media (max-width: 640px) {
-      .hero { padding: 8rem 1.5rem 4rem; }
-      .hero h1 { font-size: 2.2rem; }
-      .hero .summary { font-size: 1rem; }
-      .hero .headshot { width: 140px; height: 140px; }
-      section { padding: 3.5rem 1.2rem; }
-      nav ul { gap: 0.7rem; }
-      nav ul a { font-size: 0.8rem; }
+    @media (max-width: 768px) {
+      /* Nav: hamburger-free scrollable approach */
+      nav {
+        padding: 0.6rem 1rem;
+        gap: 0.5rem;
+      }
+
+      nav .logo { font-size: 1rem; }
+
+      nav ul {
+        gap: 0.4rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 1;
+        min-width: 0;
+        mask-image: linear-gradient(to right, #000 85%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, #000 85%, transparent 100%);
+        padding-right: 1rem;
+      }
+
+      nav ul::-webkit-scrollbar { display: none; }
+
+      nav ul a { font-size: 0.7rem; white-space: nowrap; }
+
+      nav ul li:last-child { padding-right: 1.5rem; }
+
+      /* Hero */
+      .hero { padding: 6.5rem 1.2rem 3rem; }
+      .hero h1 { font-size: 2rem; }
+      .hero .headshot { width: 130px; height: 130px; }
+
+      .hero .links {
+        gap: 0.5rem;
+      }
+
+      .hero .links .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+
+      .hero .links .btn svg { width: 15px; height: 15px; }
+
+      /* Sections */
+      section { padding: 3rem 1rem; }
+
+      section h2 { font-size: 1.4rem; }
+
+      /* Cards */
+      .card { padding: 1.2rem; }
+
+      .card-inner { gap: 0.8rem; }
+
+      .card-logo {
+        width: 36px; height: 36px; min-width: 36px;
+      }
+
+      .card h3 { font-size: 0.95rem; }
+      .card .org { font-size: 0.85rem; }
+      .card p { font-size: 0.85rem; }
+
+      /* Projects */
       .projects-grid { grid-template-columns: 1fr; }
+
+      .project-card { padding: 1.2rem; }
+
+      .project-hex { width: 50px; height: 50px; min-width: 50px; }
+
+      .cran-badges img { height: 18px; }
+
+      /* Service */
       .service-grid { grid-template-columns: 1fr; }
+
+      /* Publications */
+      .pub-item { padding: 1rem; }
+      .pub-item .pub-title { font-size: 0.9rem; }
+      .pub-item .pub-venue { font-size: 0.82rem; }
+
+      /* Contact */
+      .contact-section { padding: 3rem 1rem; }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact-links .btn { width: 200px; justify-content: center; }
+
+      /* Dark mode toggle */
+      .theme-toggle { width: 32px; height: 32px; }
+      .theme-toggle svg { width: 15px; height: 15px; }
+
+      /* Back to top */
+      .back-to-top { bottom: 1.2rem; right: 1.2rem; width: 40px; height: 40px; }
+    }
+
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 1.7rem; }
+      .hero .headshot { width: 110px; height: 110px; }
+      .hero .links .btn { padding: 0.45rem 0.8rem; font-size: 0.75rem; }
+      .card-logo { width: 30px; height: 30px; min-width: 30px; }
+      .project-hex { width: 42px; height: 42px; min-width: 42px; }
     }
 
     html { scroll-behavior: smooth; }
 
-    /* Scroll animations */
-    .fade-in {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    /* Scroll animations — only applied to elements below the fold */
+    .animate-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    .fade-in.visible {
-      opacity: 1; transform: translateY(0);
+    .animate-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Back-to-top button */
@@ -1029,15 +1123,41 @@
     }
     updateToggleIcons(saved);
 
-    // Scroll animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
+    // Scroll animations — only hide elements below the fold, reveal on scroll
+    const viewH = window.innerHeight;
+    const animItems = [];
 
-    document.querySelectorAll('section, .section-alt > section').forEach(el => {
-      el.classList.add('fade-in');
-      observer.observe(el);
+    document.querySelectorAll(
+      'section h2, .card, .pub-item, .project-card, .contact-inner'
+    ).forEach(el => {
+      if (el.getBoundingClientRect().top > viewH - 40) {
+        el.classList.add('animate-in');
+        // Stagger siblings
+        const siblings = Array.from(el.parentElement.children).filter(
+          c => c.classList.contains('card') || c.classList.contains('pub-item') || c.classList.contains('project-card')
+        );
+        const idx = siblings.indexOf(el);
+        if (idx >= 0) el.style.transitionDelay = idx * 0.06 + 's';
+        animItems.push(el);
+      }
     });
+
+    function revealOnScroll() {
+      const vh = window.innerHeight;
+      for (let i = animItems.length - 1; i >= 0; i--) {
+        const el = animItems[i];
+        if (el.getBoundingClientRect().top < vh - 30) {
+          el.classList.add('visible');
+          animItems.splice(i, 1);
+        }
+      }
+      if (animItems.length === 0) {
+        window.removeEventListener('scroll', revealOnScroll);
+      }
+    }
+
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
+    revealOnScroll();
 
     // Back to top
     const btn = document.querySelector('.back-to-top');

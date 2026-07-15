@@ -5,9 +5,22 @@ I'm an aerospace engineer who enjoys building useful tools and contributing to o
 ## About Me
 
 - Currently working on [PRA](https://github.com/paulgovan/PRA)
-- Learning Python
 - Open to collaborating on [ReliaShiny](https://github.com/paulgovan/ReliaShiny)
+- Author of several R packages for reliability engineering (see Projects below)
 - Ask me about any of my projects!
+
+## Projects
+
+| | Project | Description |
+|---|---|---|
+| <img src="logos/PRA-hex.png" width="40" alt="PRA"> | [PRA](https://github.com/paulgovan/PRA) | Probabilistic risk assessment in R |
+| <img src="logos/ReliaShiny-hex.png" width="40" alt="ReliaShiny"> | [ReliaShiny](https://github.com/paulgovan/ReliaShiny) | Shiny app for reliability analysis |
+| <img src="logos/ReliaGrowR-hex.png" width="40" alt="ReliaGrowR"> | [ReliaGrowR](https://github.com/paulgovan/ReliaGrowR) | Reliability growth analysis in R |
+| <img src="logos/ReliaLearnR-hex.png" width="40" alt="ReliaLearnR"> | [ReliaLearnR](https://github.com/paulgovan/ReliaLearnR) | Reliability engineering education tools |
+| <img src="logos/ReliaPlotR-hex.png" width="40" alt="ReliaPlotR"> | [ReliaPlotR](https://github.com/paulgovan/ReliaPlotR) | Reliability plotting toolkit for R |
+| <img src="logos/BayesianNetwork-hex.png" width="40" alt="BayesianNetwork"> | [BayesianNetwork](https://github.com/paulgovan/BayesianNetwork) | Bayesian network modeling in R |
+| <img src="logos/eAnalytics-hex.png" width="40" alt="eAnalytics"> | [eAnalytics](https://github.com/paulgovan/eAnalytics) | Electric utility outage analytics |
+| <img src="logos/sticker2_building.png" width="40" alt="AutoDeskR"> | [AutoDeskR](https://github.com/paulgovan/AutoDeskR) | AutoCAD/AutoDesk automation in R |
 
 ## Skills
 
@@ -20,6 +33,8 @@ I'm an aerospace engineer who enjoys building useful tools and contributing to o
 ![Paul's GitHub stats](https://github-readme-stats.vercel.app/api?username=paulgovan&show_icons=true&theme=radical)
 
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=paulgovan&layout=compact&theme=tokyonight)
+
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=paulgovan&theme=radical)
 
 ## Get in Touch
 

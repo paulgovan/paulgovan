@@ -13,14 +13,14 @@ I'm an aerospace engineer who enjoys building useful tools and contributing to o
 
 | | Project | Description |
 |---|---|---|
-| <img src="logos/PRA-hex.png" width="40" alt="PRA"> | [PRA](https://github.com/paulgovan/PRA) | Probabilistic risk assessment in R |
-| <img src="logos/ReliaShiny-hex.png" width="40" alt="ReliaShiny"> | [ReliaShiny](https://github.com/paulgovan/ReliaShiny) | Shiny app for reliability analysis |
-| <img src="logos/ReliaGrowR-hex.png" width="40" alt="ReliaGrowR"> | [ReliaGrowR](https://github.com/paulgovan/ReliaGrowR) | Reliability growth analysis in R |
-| <img src="logos/ReliaLearnR-hex.png" width="40" alt="ReliaLearnR"> | [ReliaLearnR](https://github.com/paulgovan/ReliaLearnR) | Reliability engineering education tools |
-| <img src="logos/ReliaPlotR-hex.png" width="40" alt="ReliaPlotR"> | [ReliaPlotR](https://github.com/paulgovan/ReliaPlotR) | Reliability plotting toolkit for R |
-| <img src="logos/BayesianNetwork-hex.png" width="40" alt="BayesianNetwork"> | [BayesianNetwork](https://github.com/paulgovan/BayesianNetwork) | Bayesian network modeling in R |
-| <img src="logos/eAnalytics-hex.png" width="40" alt="eAnalytics"> | [eAnalytics](https://github.com/paulgovan/eAnalytics) | Electric utility outage analytics |
-| <img src="logos/sticker2_building.png" width="40" alt="AutoDeskR"> | [AutoDeskR](https://github.com/paulgovan/AutoDeskR) | AutoCAD/AutoDesk automation in R |
+| <img src="logos/PRA-hex.png" width="40" alt="PRA"> | [PRA](https://github.com/paulgovan/PRA) | Project Risk Analysis |
+| <img src="logos/ReliaShiny-hex.png" width="40" alt="ReliaShiny"> | [ReliaShiny](https://github.com/paulgovan/ReliaShiny) | A Shiny App for Reliability Analysis |
+| <img src="logos/ReliaGrowR-hex.png" width="40" alt="ReliaGrowR"> | [ReliaGrowR](https://github.com/paulgovan/ReliaGrowR) | Reliability Growth Analysis |
+| <img src="logos/ReliaLearnR-hex.png" width="40" alt="ReliaLearnR"> | [ReliaLearnR](https://github.com/paulgovan/ReliaLearnR) | Learning Modules for Reliability Analysis |
+| <img src="logos/ReliaPlotR-hex.png" width="40" alt="ReliaPlotR"> | [ReliaPlotR](https://github.com/paulgovan/ReliaPlotR) | Interactive Reliability Probability Plots |
+| <img src="logos/BayesianNetwork-hex.png" width="40" alt="BayesianNetwork"> | [BayesianNetwork](https://github.com/paulgovan/BayesianNetwork) | Bayesian Network Modeling and Analysis |
+| <img src="logos/eAnalytics-hex.png" width="40" alt="eAnalytics"> | [eAnalytics](https://github.com/paulgovan/eAnalytics) | Dynamic Web-based Analytics for the Energy Industry |
+| <img src="logos/sticker2_building.png" width="40" alt="AutoDeskR"> | [AutoDeskR](https://github.com/paulgovan/AutoDeskR) | An R Interface to the AutoDesk Platform |
 
 ## Skills
 
@@ -29,10 +29,6 @@ I'm an aerospace engineer who enjoys building useful tools and contributing to o
 ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&logoColor=white)
 
 ## GitHub Stats
-
-![Paul's GitHub stats](https://github-readme-stats.vercel.app/api?username=paulgovan&show_icons=true&theme=radical)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=paulgovan&layout=compact&theme=tokyonight)
 
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=paulgovan&theme=radical)
 

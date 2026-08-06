@@ -22,7 +22,7 @@ I'm an aerospace engineer who enjoys building useful tools and contributing to o
 | <img src="logos/eAnalytics-hex.png" width="40" alt="eAnalytics"> | [eAnalytics](https://github.com/paulgovan/eAnalytics) | Dynamic Web-based Analytics for the Energy Industry |
 | <img src="logos/sticker2_building.png" width="40" alt="AutoDeskR"> | [AutoDeskR](https://github.com/paulgovan/AutoDeskR) | An R Interface to the AutoDesk Platform |
 | <img src="logos/cadence-icon.png" width="40" alt="Cadence"> | [Cadence](https://apps.apple.com/us/app/cadence-bilateral-visuals/id6760571574) | An iOS App for Bilateral Visualization and Guided Breathwork |
-| <img src="logos/breather-icon.png" width="40" alt="Breather"> | [Breather](https://apps.apple.com/us/app/breather-take-a-breather/id6759631968) | A Free iOS Breathing App for Stress Relief, Focus, and Better Sleep |
+| <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/bf/50/52/bf505285-aaf6-d2be-242d-65c6b624d425/AppIcon-0-0-1x_U007epad-0-1-85-220.png/100x100bb.jpg" width="40" alt="Breather"> | [Breather](https://apps.apple.com/us/app/breather-take-a-breather/id6759631968) | A Free iOS Breathing App for Stress Relief, Focus, and Better Sleep |
 
 ## Skills
 

@@ -309,53 +309,108 @@
     .card .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.4rem; }
     .card p { font-size: 0.9rem; color: var(--muted); }
 
-    /* Projects Grid */
-    .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.2rem;
+    /* Project tiles — hex honeycomb (R) + squircles (iOS) */
+    #projects { position: relative; }
+
+    .group-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted);
+      margin: 1.8rem 0 1rem; text-align: center;
     }
 
-    .project-card {
+    .hive { --hex-w: 120px; --hex-h: calc(var(--hex-w) * 1.1547); }
+    .hive.small { --hex-w: 92px; }
+
+    .hive-row { display: flex; justify-content: center; gap: 5px; }
+    .hive-row + .hive-row { margin-top: calc(var(--hex-h) * -0.23); }
+
+    .tile {
+      background: none; border: 0; padding: 0; font: inherit; color: inherit;
+      position: relative; cursor: pointer;
+      flex: none;               /* keep hexes at their exact size so the comb stays true */
+      transition: transform 0.25s;
+    }
+
+    .tile img {
+      display: block;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.18));
+      transition: filter 0.25s;
+    }
+
+    .tile:hover, .tile:focus-visible { transform: translateY(-6px) scale(1.05); z-index: 5; }
+    .tile.active { transform: translateY(-6px) scale(1.07); z-index: 6; }
+
+    .tile:hover img, .tile:focus-visible img, .tile.active img {
+      filter: drop-shadow(0 12px 22px rgba(0,0,0,0.3));
+    }
+
+    .tile:focus { outline: none; }
+    .tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+    .hex-tile { width: var(--hex-w); height: var(--hex-h); }
+    .hex-tile img { width: 100%; height: 100%; object-fit: contain; }
+
+    .hive.past-hive .tile { opacity: 0.7; }
+    .hive.past-hive .tile:hover,
+    .hive.past-hive .tile:focus-visible,
+    .hive.past-hive .tile.active { opacity: 1; }
+
+    .app-row { display: flex; justify-content: center; gap: 1.6rem; flex-wrap: wrap; }
+
+    .app-tile { width: 112px; }
+
+    .app-tile img {
+      width: 112px; height: 112px;
+      border-radius: 22.37%; object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .app-tile .app-name {
+      display: block; margin-top: 0.6rem; text-align: center;
+      font-size: 0.82rem; font-weight: 500; color: var(--text);
+      transition: color 0.25s;
+    }
+
+    .app-tile:hover .app-name,
+    .app-tile:focus-visible .app-name,
+    .app-tile.active .app-name { color: var(--accent); }
+
+    /* Pop-out detail card */
+    .tile-pop {
+      position: absolute; z-index: 20;
+      width: min(300px, calc(100% - 2.5rem));
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      transition: all 0.25s;
-      display: flex; align-items: flex-start; gap: 1rem;
+      border-radius: 12px; padding: 1.1rem 1.2rem;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+      opacity: 0; transform: translateY(6px) scale(0.97);
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
     }
 
-    .project-hex {
-      width: 64px; height: 64px; min-width: 64px;
-      object-fit: contain;
+    .tile-pop.open { opacity: 1; transform: none; pointer-events: auto; }
+
+    .tile-pop .pop-title {
+      font-size: 1rem; font-weight: 600;
+      color: var(--primary); margin-bottom: 0.3rem; padding-right: 1.2rem;
     }
 
-    .project-card:hover {
-      box-shadow: 0 8px 24px var(--accent-glow);
-      border-color: var(--accent);
-      transform: translateY(-3px);
+    .tile-pop .pop-desc { font-size: 0.87rem; color: var(--muted); }
+    .tile-pop .cran-badges { margin-top: 0.7rem; }
+    .tile-pop .pop-tags:not(:empty) { margin-top: 0.2rem; }
+
+    .tile-pop .pop-link {
+      display: inline-block; margin-top: 0.8rem;
+      font-size: 0.85rem; font-weight: 500;
     }
 
-    .project-card h3 {
-      font-size: 1rem; margin-bottom: 0.4rem;
-      color: var(--primary); font-weight: 600;
+    .tile-pop-close {
+      position: absolute; top: 0.45rem; right: 0.55rem;
+      background: none; border: 0; cursor: pointer;
+      color: var(--muted); font-size: 1.15rem; line-height: 1; padding: 0.2rem;
     }
 
-    .project-card:hover h3 { color: var(--accent); }
-
-    .project-card p { font-size: 0.9rem; color: var(--muted); }
-
-    .project-card.featured { grid-column: span 2; }
-    .project-card.featured .project-hex { width: 80px; height: 80px; min-width: 80px; }
-    .project-card.featured h3 { font-size: 1.2rem; }
-
-    .projects-grid.past { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-
-    .project-card.past { opacity: 0.72; padding: 1.1rem 1.2rem; }
-    .project-card.past:hover { opacity: 1; }
-    .project-card.past .project-hex { width: 44px; height: 44px; min-width: 44px; }
-    .project-card.past h3 { font-size: 0.95rem; color: var(--muted); }
-    .project-card.past:hover h3 { color: var(--accent); }
-    .project-card.past p { font-size: 0.85rem; }
+    .tile-pop-close:hover { color: var(--accent); }
 
     .subsection-note {
       font-size: 0.85rem; color: var(--muted);
@@ -565,17 +620,17 @@
       .cert-grid { grid-template-columns: 1fr; }
 
       /* Projects */
-      .projects-grid { grid-template-columns: 1fr; }
+      .hive { --hex-w: 88px; }
+      .hive.small { --hex-w: 72px; }
 
-      .projects-grid.past { grid-template-columns: 1fr; }
+      .app-row { gap: 1rem; }
+      .app-tile { width: 88px; }
+      .app-tile img { width: 88px; height: 88px; }
+      .app-tile .app-name { font-size: 0.76rem; }
 
-      .project-card { padding: 1.2rem; }
+      .group-label { margin: 1.4rem 0 0.8rem; }
 
-      .project-hex { width: 50px; height: 50px; min-width: 50px; }
-
-      .project-card.featured { grid-column: auto; }
-      .project-card.featured .project-hex { width: 50px; height: 50px; min-width: 50px; }
-      .project-card.featured h3 { font-size: 1rem; }
+      .tile-pop { width: calc(100% - 1.5rem); }
 
       .cran-badges img { height: 18px; }
 
@@ -615,7 +670,6 @@
       .hero .headshot { width: 110px; height: 110px; }
       .hero .links .btn { padding: 0.45rem 0.8rem; font-size: 0.75rem; }
       .card-logo { width: 30px; height: 30px; min-width: 30px; }
-      .project-hex { width: 42px; height: 42px; min-width: 42px; }
       .card-date { padding-left: calc(30px + 0.8rem); }
     }
 
@@ -1081,125 +1135,103 @@
   <section id="projects">
     <h2>Projects</h2>
     <h3 class="pub-subsection">Current</h3>
-    <p class="subsection-note">Actively maintained and shipping updates.</p>
-    <div class="projects-grid">
-      <a href="https://github.com/paulgovan/PRA" class="project-card featured" target="_blank" rel="noopener">
-        <img src="./logos/PRA-hex.png" alt="PRA hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>PRA</h3>
-          <p>Quantitative tools for project risk analysis &mdash; cost and schedule risk, sensitivity, and Monte Carlo simulation for R.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/PRA" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/PRA" alt="Downloads">
-          </div>
-        </div>
-      </a>
-      <a href="https://github.com/paulgovan/ReliaShiny" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/ReliaShiny-hex.png" alt="ReliaShiny hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>ReliaShiny</h3>
-          <p>Interactive web application for reliability analysis.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/ReliaShiny" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/ReliaShiny" alt="Downloads">
-          </div>
-        </div>
-      </a>
-      <a href="https://github.com/paulgovan/ReliaGrowR" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/ReliaGrowR-hex.png" alt="ReliaGrowR hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>ReliaGrowR</h3>
-          <p>Reliability growth analysis tools and models.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/ReliaGrowR" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/ReliaGrowR" alt="Downloads">
-          </div>
-        </div>
-      </a>
-      <a href="https://github.com/paulgovan/ReliaLearnR" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/ReliaLearnR-hex.png" alt="ReliaLearnR hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>ReliaLearnR</h3>
-          <p>Learning modules for reliability analysis.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/ReliaLearnR" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/ReliaLearnR" alt="Downloads">
-          </div>
-        </div>
-      </a>
-      <a href="https://github.com/paulgovan/ReliaPlotR" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/ReliaPlotR-hex.png" alt="ReliaPlotR hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>ReliaPlotR</h3>
-          <p>Reliability plotting tools for survival and failure data.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/ReliaPlotR" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/ReliaPlotR" alt="Downloads">
-          </div>
-        </div>
-      </a>
-      <a href="https://apps.apple.com/us/app/breather-take-a-breather/id6759631968" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/breather-icon.png" alt="Breather app icon" class="project-hex" style="border-radius: 14px;" loading="lazy">
-        <div>
-          <h3>Breather</h3>
-          <p>A free iOS breathing app for stress relief, focus, and better sleep.</p>
-          <span class="tag">Swift</span><span class="tag">iOS</span>
-        </div>
-      </a>
-      <a href="https://apps.apple.com/us/app/cadence-bilateral-visuals/id6760571574" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/cadence-icon.png" alt="Cadence app icon" class="project-hex" style="border-radius: 14px;" loading="lazy">
-        <div>
-          <h3>Cadence</h3>
-          <p>Bilateral visualization and guided breathwork for grounding, focus, and relaxation.</p>
-          <span class="tag">Swift</span><span class="tag">iOS</span>
-        </div>
-      </a>
-      <a href="http://forge90-app.com" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/forge90-icon.png" alt="Forge90 app icon" class="project-hex" style="border-radius: 14px;" loading="lazy">
-        <div>
-          <h3>Forge90</h3>
-          <p>A sci-fi-themed 91-day fitness app with 12 rotating workout types and an optional narrative campaign, running fully offline.</p>
-          <span class="tag">Swift</span><span class="tag">iOS</span>
-        </div>
-      </a>
+    <p class="subsection-note">Actively maintained and shipping updates. Select a tile for details.</p>
+    <div class="group-label">R packages</div>
+    <div class="hive">
+      <div class="hive-row">
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="PRA" data-pkg="PRA"
+                data-desc="Quantitative tools for project risk analysis &mdash; cost and schedule risk, sensitivity, and Monte Carlo simulation."
+                data-url="https://github.com/paulgovan/PRA" data-link="View on GitHub">
+          <img src="./logos/PRA-hex.png" alt="PRA hex sticker" loading="lazy">
+        </button>
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="ReliaShiny" data-pkg="ReliaShiny"
+                data-desc="Interactive web application for reliability analysis."
+                data-url="https://github.com/paulgovan/ReliaShiny" data-link="View on GitHub">
+          <img src="./logos/ReliaShiny-hex.png" alt="ReliaShiny hex sticker" loading="lazy">
+        </button>
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="ReliaGrowR" data-pkg="ReliaGrowR"
+                data-desc="Reliability growth analysis tools and models."
+                data-url="https://github.com/paulgovan/ReliaGrowR" data-link="View on GitHub">
+          <img src="./logos/ReliaGrowR-hex.png" alt="ReliaGrowR hex sticker" loading="lazy">
+        </button>
+      </div>
+      <div class="hive-row">
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="ReliaLearnR" data-pkg="ReliaLearnR"
+                data-desc="Learning modules for reliability analysis."
+                data-url="https://github.com/paulgovan/ReliaLearnR" data-link="View on GitHub">
+          <img src="./logos/ReliaLearnR-hex.png" alt="ReliaLearnR hex sticker" loading="lazy">
+        </button>
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="ReliaPlotR" data-pkg="ReliaPlotR"
+                data-desc="Reliability plotting tools for survival and failure data."
+                data-url="https://github.com/paulgovan/ReliaPlotR" data-link="View on GitHub">
+          <img src="./logos/ReliaPlotR-hex.png" alt="ReliaPlotR hex sticker" loading="lazy">
+        </button>
+      </div>
+    </div>
+    <div class="group-label">iOS apps</div>
+    <div class="app-row">
+      <button type="button" class="tile app-tile" aria-expanded="false"
+              data-name="Breather" data-tags="Swift,iOS"
+              data-desc="A free iOS breathing app for stress relief, focus, and better sleep."
+              data-url="https://apps.apple.com/us/app/breather-take-a-breather/id6759631968" data-link="View on the App Store">
+        <img src="./logos/breather-icon.png" alt="Breather app icon" loading="lazy">
+        <span class="app-name">Breather</span>
+      </button>
+      <button type="button" class="tile app-tile" aria-expanded="false"
+              data-name="Cadence" data-tags="Swift,iOS"
+              data-desc="Bilateral visualization and guided breathwork for grounding, focus, and relaxation."
+              data-url="https://apps.apple.com/us/app/cadence-bilateral-visuals/id6760571574" data-link="View on the App Store">
+        <img src="./logos/cadence-icon.png" alt="Cadence app icon" loading="lazy">
+        <span class="app-name">Cadence</span>
+      </button>
+      <button type="button" class="tile app-tile" aria-expanded="false"
+              data-name="Forge90" data-tags="Swift,iOS"
+              data-desc="A sci-fi-themed 91-day fitness app with 12 rotating workout types and an optional narrative campaign, running fully offline."
+              data-url="http://forge90-app.com" data-link="Visit forge90-app.com">
+        <img src="./logos/forge90-icon.png" alt="Forge90 app icon" loading="lazy">
+        <span class="app-name">Forge90</span>
+      </button>
     </div>
 
     <h3 class="pub-subsection">Past</h3>
     <p class="subsection-note">No longer actively maintained, but still on CRAN.</p>
-    <div class="projects-grid past">
-      <a href="https://github.com/paulgovan/BayesianNetwork" class="project-card past" target="_blank" rel="noopener">
-        <img src="./logos/BayesianNetwork-hex.png" alt="BayesianNetwork hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>BayesianNetwork</h3>
-          <p>Interactive Bayesian network modeling and visualization.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/BayesianNetwork" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork" alt="Downloads">
-          </div>
-        </div>
-      </a>
-      <a href="https://github.com/paulgovan/eAnalytics" class="project-card past" target="_blank" rel="noopener">
-        <img src="./logos/eAnalytics-hex.png" alt="eAnalytics hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>eAnalytics</h3>
-          <p>Dynamic web-based analytics for the energy industry.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/eAnalytics" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/eAnalytics" alt="Downloads">
-          </div>
-        </div>
-      </a>
-      <a href="https://github.com/paulgovan/AutoDeskR" class="project-card past" target="_blank" rel="noopener">
-        <img src="./logos/sticker2_building.png" alt="AutoDeskR hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>AutoDeskR</h3>
-          <p>An R interface to the AutoDesk platform.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/AutoDeskR" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/AutoDeskR" alt="Downloads">
-          </div>
-        </div>
-      </a>
+    <div class="hive small past-hive">
+      <div class="hive-row">
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="BayesianNetwork" data-pkg="BayesianNetwork"
+                data-desc="Interactive Bayesian network modeling and visualization."
+                data-url="https://github.com/paulgovan/BayesianNetwork" data-link="View on GitHub">
+          <img src="./logos/BayesianNetwork-hex.png" alt="BayesianNetwork hex sticker" loading="lazy">
+        </button>
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="eAnalytics" data-pkg="eAnalytics"
+                data-desc="Dynamic web-based analytics for the energy industry."
+                data-url="https://github.com/paulgovan/eAnalytics" data-link="View on GitHub">
+          <img src="./logos/eAnalytics-hex.png" alt="eAnalytics hex sticker" loading="lazy">
+        </button>
+      </div>
+      <div class="hive-row">
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="AutoDeskR" data-pkg="AutoDeskR"
+                data-desc="An R interface to the AutoDesk platform."
+                data-url="https://github.com/paulgovan/AutoDeskR" data-link="View on GitHub">
+          <img src="./logos/sticker2_building.png" alt="AutoDeskR hex sticker" loading="lazy">
+        </button>
+      </div>
+    </div>
+
+    <div class="tile-pop" role="dialog" aria-label="Project details" hidden>
+      <button type="button" class="tile-pop-close" aria-label="Close details">&times;</button>
+      <div class="pop-title"></div>
+      <div class="pop-desc"></div>
+      <div class="cran-badges"></div>
+      <div class="pop-tags"></div>
+      <a class="pop-link" target="_blank" rel="noopener"></a>
     </div>
   </section>
   </div>
@@ -1319,15 +1351,14 @@
     const animItems = [];
 
     document.querySelectorAll(
-      'section h2, .card, .cert-chip, .pub-item, .pub-row, .project-card, .contact-inner'
+      'section h2, .card, .cert-chip, .pub-item, .pub-row, .hive, .app-row, .contact-inner'
     ).forEach(el => {
       if (el.getBoundingClientRect().top > viewH - 40) {
         el.classList.add('animate-in');
         // Stagger siblings
         const siblings = Array.from(el.parentElement.children).filter(
           c => c.classList.contains('card') || c.classList.contains('cert-chip') ||
-               c.classList.contains('pub-item') || c.classList.contains('pub-row') ||
-               c.classList.contains('project-card')
+               c.classList.contains('pub-item') || c.classList.contains('pub-row')
         );
         const idx = siblings.indexOf(el);
         if (idx >= 0) el.style.transitionDelay = idx * 0.06 + 's';
@@ -1351,6 +1382,93 @@
 
     window.addEventListener('scroll', revealOnScroll, { passive: true });
     revealOnScroll();
+
+    // Project tiles — pop-out detail card
+    (function () {
+      const sec = document.getElementById('projects');
+      const pop = sec && sec.querySelector('.tile-pop');
+      if (!pop) return;
+
+      const tiles = Array.from(sec.querySelectorAll('.tile'));
+      const title = pop.querySelector('.pop-title');
+      const desc = pop.querySelector('.pop-desc');
+      const badges = pop.querySelector('.cran-badges');
+      const tags = pop.querySelector('.pop-tags');
+      const link = pop.querySelector('.pop-link');
+      let open = null;
+
+      function close() {
+        if (!open) return;
+        open.classList.remove('active');
+        open.setAttribute('aria-expanded', 'false');
+        open = null;
+        pop.classList.remove('open');
+        pop.hidden = true;
+      }
+
+      function place(tile) {
+        const sr = sec.getBoundingClientRect();
+        const tr = tile.getBoundingClientRect();
+        const pw = pop.offsetWidth, ph = pop.offsetHeight;
+        const room = sec.clientWidth, gap = 14, edge = 8;
+        const x = tr.left - sr.left, y = tr.top - sr.top;
+
+        let left;
+        if (x + tr.width + gap + pw <= room - edge) left = x + tr.width + gap;
+        else if (x - gap - pw >= edge) left = x - gap - pw;
+        else left = Math.max(edge, Math.min(x + tr.width / 2 - pw / 2, room - pw - edge));
+
+        let top = y + tr.height / 2 - ph / 2;
+        top = Math.max(edge, Math.min(top, sec.scrollHeight - ph - edge));
+
+        pop.style.left = left + 'px';
+        pop.style.top = top + 'px';
+      }
+
+      function show(tile) {
+        if (open === tile) { close(); return; }
+        if (open) { open.classList.remove('active'); open.setAttribute('aria-expanded', 'false'); }
+
+        const d = tile.dataset;
+        title.textContent = d.name;
+        desc.textContent = d.desc;
+
+        badges.innerHTML = d.pkg
+          ? '<img src="https://www.r-pkg.org/badges/version/' + d.pkg + '" alt="CRAN">' +
+            '<img src="https://cranlogs.r-pkg.org/badges/grand-total/' + d.pkg + '" alt="Downloads">'
+          : '';
+
+        tags.innerHTML = '';
+        (d.tags ? d.tags.split(',') : []).forEach(function (t) {
+          const el = document.createElement('span');
+          el.className = 'tag';
+          el.textContent = t;
+          tags.appendChild(el);
+        });
+
+        link.href = d.url;
+        link.textContent = d.link + ' \u2192';
+
+        open = tile;
+        tile.classList.add('active');
+        tile.setAttribute('aria-expanded', 'true');
+
+        pop.hidden = false;
+        place(tile);
+        void pop.offsetWidth;          // flush layout so the transition runs
+        pop.classList.add('open');
+      }
+
+      tiles.forEach(function (t) {
+        t.addEventListener('click', function (e) { e.stopPropagation(); show(t); });
+      });
+
+      pop.querySelector('.tile-pop-close').addEventListener('click', close);
+      pop.addEventListener('click', function (e) { e.stopPropagation(); });
+      document.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+      window.addEventListener('resize', close);
+    })();
 
     // Back to top + nav scroll-spy
     const btn = document.querySelector('.back-to-top');

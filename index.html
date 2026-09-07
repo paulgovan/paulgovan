@@ -110,36 +110,8 @@
     }
 
     .hero .summary {
-      font-size: 1.05rem; max-width: 600px; margin: 0 auto 2rem;
-      color: rgba(255,255,255,0.75); line-height: 1.8;
-    }
-
-    /* Hero stat strip */
-    .stat-strip {
-      display: flex; gap: 0.8rem; flex-wrap: wrap;
-      max-width: 620px; margin: 0 auto 2.2rem;
-    }
-
-    .stat {
-      flex: 1 1 0; min-width: 120px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 10px; padding: 0.9rem 0.5rem;
-      backdrop-filter: blur(4px);
-    }
-
-    .stat .num {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem; line-height: 1; color: #fff;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .stat .label {
-      display: block; margin-top: 0.4rem;
-      font-size: 0.68rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.6);
+      font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem;
+      color: rgba(255,255,255,0.8); line-height: 1.8;
     }
 
     .hero .links {
@@ -576,12 +548,6 @@
       .card .org { font-size: 0.85rem; }
       .card p { font-size: 0.85rem; }
 
-      /* Hero stat strip */
-      .stat-strip { max-width: 340px; gap: 0.5rem; margin-bottom: 1.6rem; }
-      .stat { flex: 1 1 calc(50% - 0.25rem); min-width: 0; padding: 0.7rem 0.4rem; }
-      .stat .num { font-size: 1.4rem; }
-      .stat .label { font-size: 0.6rem; letter-spacing: 0.05em; }
-
       /* Timeline */
       .timeline { padding-left: 1.5rem; }
       .timeline::before { left: 5px; }
@@ -651,7 +617,6 @@
       .card-logo { width: 30px; height: 30px; min-width: 30px; }
       .project-hex { width: 42px; height: 42px; min-width: 42px; }
       .card-date { padding-left: calc(30px + 0.8rem); }
-      .stat .num { font-size: 1.25rem; }
     }
 
     html { scroll-behavior: smooth; }
@@ -805,16 +770,6 @@
         <img src="./headshot-400.png" alt="Paul Govan" class="headshot" onerror="this.src='https://github.com/paulgovan.png'">
       </picture>
       <h1>Paul Govan</h1>
-      <p class="summary">
-        Reliability engineer at GE Aerospace. I build open-source tools for
-        reliability, risk, and data analysis &mdash; mostly in R, lately in Swift.
-      </p>
-      <div class="stat-strip">
-        <div class="stat"><span class="num" data-stat="packages">8</span><span class="label">R packages</span></div>
-        <div class="stat"><span class="num" data-stat="publications">13</span><span class="label">Publications</span></div>
-        <div class="stat"><span class="num" data-stat="apps">3</span><span class="label">iOS apps</span></div>
-        <div class="stat"><span class="num" data-stat="certs">4</span><span class="label">Certifications</span></div>
-      </div>
       <div class="links">
         <a href="https://www.linkedin.com/in/paulgovan/" class="btn btn-brand btn-linkedin" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><use href="#icon-linkedin"></use></svg>
@@ -1219,6 +1174,7 @@
           <p>Interactive Bayesian network modeling and visualization.</p>
           <div class="cran-badges">
             <img src="https://www.r-pkg.org/badges/version/BayesianNetwork" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork" alt="Downloads">
           </div>
         </div>
       </a>
@@ -1229,6 +1185,7 @@
           <p>Dynamic web-based analytics for the energy industry.</p>
           <div class="cran-badges">
             <img src="https://www.r-pkg.org/badges/version/eAnalytics" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/eAnalytics" alt="Downloads">
           </div>
         </div>
       </a>
@@ -1239,6 +1196,7 @@
           <p>An R interface to the AutoDesk platform.</p>
           <div class="cran-badges">
             <img src="https://www.r-pkg.org/badges/version/AutoDeskR" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/AutoDeskR" alt="Downloads">
           </div>
         </div>
       </a>
@@ -1355,27 +1313,6 @@
       document.documentElement.setAttribute('data-theme', 'dark');
     }
     updateToggleIcons(saved);
-
-    // Hero stats — counted from the page so they can't go stale
-    function countStats() {
-      const q = sel => document.querySelectorAll(sel).length;
-      const iosApps = Array.from(document.querySelectorAll('#projects .project-card'))
-        .filter(c => Array.from(c.querySelectorAll('.tag'))
-          .some(t => t.textContent.trim() === 'iOS')).length;
-
-      const counts = {
-        packages: q('#projects .cran-badges'),
-        publications: q('#publications .pub-item') + q('#publications .pub-row'),
-        apps: iosApps,
-        certs: q('#certifications .cert-chip')
-      };
-
-      document.querySelectorAll('.stat .num').forEach(el => {
-        const n = counts[el.dataset.stat];
-        if (n) el.textContent = n;
-      });
-    }
-    countStats();
 
     // Scroll animations — only hide elements below the fold, reveal on scroll
     const viewH = window.innerHeight;

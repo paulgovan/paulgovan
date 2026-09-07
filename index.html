@@ -319,7 +319,6 @@
     }
 
     .hive { --hex-w: 120px; --hex-h: calc(var(--hex-w) * 1.1547); }
-    .hive.small { --hex-w: 92px; }
 
     .hive-row { display: flex; justify-content: center; gap: 5px; }
     .hive-row + .hive-row { margin-top: calc(var(--hex-h) * -0.23); }
@@ -621,7 +620,6 @@
 
       /* Projects */
       .hive { --hex-w: 88px; }
-      .hive.small { --hex-w: 72px; }
 
       .app-row { gap: 1rem; }
       .app-tile { width: 88px; }
@@ -1200,7 +1198,7 @@
 
     <h3 class="pub-subsection">Past</h3>
     <p class="subsection-note">No longer actively maintained, but still on CRAN.</p>
-    <div class="hive small past-hive">
+    <div class="hive past-hive">
       <div class="hive-row">
         <button type="button" class="tile hex-tile" aria-expanded="false"
                 data-name="BayesianNetwork" data-pkg="BayesianNetwork"

@@ -6,29 +6,39 @@ I'm an aerospace engineer who enjoys building useful tools and contributing to o
 
 - Currently working on [PRA](https://github.com/paulgovan/PRA)
 - Open to collaborating on [ReliaShiny](https://github.com/paulgovan/ReliaShiny)
-- Author of several R packages for reliability engineering (see Projects below)
+- Author of a family of R packages for reliability engineering, plus a few iOS apps
 - Ask me about any of my projects!
 
-## Projects
+## Current Projects
+
+Actively maintained and shipping updates.
 
 | | Project | Description |
 |---|---|---|
-| <img src="logos/PRA-hex.png" width="40" alt="PRA"> | [PRA](https://github.com/paulgovan/PRA) | Project Risk Analysis |
-| <img src="logos/ReliaShiny-hex.png" width="40" alt="ReliaShiny"> | [ReliaShiny](https://github.com/paulgovan/ReliaShiny) | A Shiny App for Reliability Analysis |
-| <img src="logos/ReliaGrowR-hex.png" width="40" alt="ReliaGrowR"> | [ReliaGrowR](https://github.com/paulgovan/ReliaGrowR) | Reliability Growth Analysis |
-| <img src="logos/ReliaLearnR-hex.png" width="40" alt="ReliaLearnR"> | [ReliaLearnR](https://github.com/paulgovan/ReliaLearnR) | Learning Modules for Reliability Analysis |
-| <img src="logos/ReliaPlotR-hex.png" width="40" alt="ReliaPlotR"> | [ReliaPlotR](https://github.com/paulgovan/ReliaPlotR) | Interactive Reliability Probability Plots |
-| <img src="logos/BayesianNetwork-hex.png" width="40" alt="BayesianNetwork"> | [BayesianNetwork](https://github.com/paulgovan/BayesianNetwork) | Bayesian Network Modeling and Analysis |
-| <img src="logos/eAnalytics-hex.png" width="40" alt="eAnalytics"> | [eAnalytics](https://github.com/paulgovan/eAnalytics) | Dynamic Web-based Analytics for the Energy Industry |
-| <img src="logos/sticker2_building.png" width="40" alt="AutoDeskR"> | [AutoDeskR](https://github.com/paulgovan/AutoDeskR) | An R Interface to the AutoDesk Platform |
-| <img src="logos/cadence-icon.png" width="40" alt="Cadence"> | [Cadence](https://apps.apple.com/us/app/cadence-bilateral-visuals/id6760571574) | An iOS App for Bilateral Visualization and Guided Breathwork |
-| <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/bf/50/52/bf505285-aaf6-d2be-242d-65c6b624d425/AppIcon-0-0-1x_U007epad-0-1-85-220.png/100x100bb.jpg" width="40" alt="Breather"> | [Breather](https://apps.apple.com/us/app/breather-take-a-breather/id6759631968) | A Free iOS Breathing App for Stress Relief, Focus, and Better Sleep |
-| <img src="logos/forge90-icon.png" width="40" alt="Forge90"> | [Forge90](http://forge90-app.com) | A Sci-Fi-Themed 91-Day iOS Fitness App |
+| <img src="logos/PRA-hex.png" width="40" alt="PRA"> | [PRA](https://github.com/paulgovan/PRA) | Quantitative tools for project risk analysis |
+| <img src="logos/ReliaShiny-hex.png" width="40" alt="ReliaShiny"> | [ReliaShiny](https://github.com/paulgovan/ReliaShiny) | Interactive web application for reliability analysis |
+| <img src="logos/ReliaGrowR-hex.png" width="40" alt="ReliaGrowR"> | [ReliaGrowR](https://github.com/paulgovan/ReliaGrowR) | Reliability growth analysis tools and models |
+| <img src="logos/ReliaLearnR-hex.png" width="40" alt="ReliaLearnR"> | [ReliaLearnR](https://github.com/paulgovan/ReliaLearnR) | Learning modules for reliability analysis |
+| <img src="logos/ReliaPlotR-hex.png" width="40" alt="ReliaPlotR"> | [ReliaPlotR](https://github.com/paulgovan/ReliaPlotR) | Reliability plotting tools for survival and failure data |
+| <img src="logos/breather-icon.png" width="40" alt="Breather"> | [Breather](https://apps.apple.com/us/app/breather-take-a-breather/id6759631968) | A free iOS breathing app for stress relief, focus, and better sleep |
+| <img src="logos/cadence-icon.png" width="40" alt="Cadence"> | [Cadence](https://apps.apple.com/us/app/cadence-bilateral-visuals/id6760571574) | Bilateral visualization and guided breathwork for grounding, focus, and relaxation |
+| <img src="logos/forge90-icon.png" width="40" alt="Forge90"> | [Forge90](http://forge90-app.com) | A sci-fi-themed 91-day iOS fitness app with an optional narrative campaign |
+
+## Past Projects
+
+No longer actively maintained, but still on CRAN.
+
+| | Project | Description |
+|---|---|---|
+| <img src="logos/BayesianNetwork-hex.png" width="40" alt="BayesianNetwork"> | [BayesianNetwork](https://github.com/paulgovan/BayesianNetwork) | Interactive Bayesian network modeling and visualization |
+| <img src="logos/eAnalytics-hex.png" width="40" alt="eAnalytics"> | [eAnalytics](https://github.com/paulgovan/eAnalytics) | Dynamic web-based analytics for the energy industry |
+| <img src="logos/sticker2_building.png" width="40" alt="AutoDeskR"> | [AutoDeskR](https://github.com/paulgovan/AutoDeskR) | An R interface to the AutoDesk platform |
 
 ## Skills
 
 ![R](https://img.shields.io/badge/-R-276DC3?style=flat-square&logo=r&logoColor=white)
 ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Swift](https://img.shields.io/badge/-Swift-F05138?style=flat-square&logo=swift&logoColor=white)
 ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&logoColor=white)
 
 ## GitHub Stats

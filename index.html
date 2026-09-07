@@ -67,6 +67,14 @@
 
     nav ul a:hover { color: #fff; }
 
+    nav ul a.active { color: #fff; }
+
+    nav ul a.active::after {
+      content: ''; display: block; height: 2px;
+      margin-top: 3px; border-radius: 2px;
+      background: var(--accent-light);
+    }
+
     /* Hero */
     .hero {
       background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 50%, #1a4a6e 100%);
@@ -102,8 +110,36 @@
     }
 
     .hero .summary {
-      font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem;
-      color: rgba(255,255,255,0.8); line-height: 1.8;
+      font-size: 1.05rem; max-width: 600px; margin: 0 auto 2rem;
+      color: rgba(255,255,255,0.75); line-height: 1.8;
+    }
+
+    /* Hero stat strip */
+    .stat-strip {
+      display: flex; gap: 0.8rem; flex-wrap: wrap;
+      max-width: 620px; margin: 0 auto 2.2rem;
+    }
+
+    .stat {
+      flex: 1 1 0; min-width: 120px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px; padding: 0.9rem 0.5rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .stat .num {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; line-height: 1; color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat .label {
+      display: block; margin-top: 0.4rem;
+      font-size: 0.68rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.6);
     }
 
     .hero .links {
@@ -181,10 +217,27 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.8rem; color: var(--primary); margin-bottom: 2rem;
       font-weight: 700;
+      position: relative; padding-bottom: 0.7rem;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute; left: 0; bottom: 0;
+      width: 44px; height: 3px;
+      background: var(--accent); border-radius: 2px;
     }
 
     /* Timeline */
-    .timeline { display: flex; flex-direction: column; gap: 1.2rem; }
+    .timeline {
+      display: flex; flex-direction: column; gap: 1.2rem;
+      position: relative; padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute; left: 7px; top: 1.9rem; bottom: 1.9rem;
+      width: 2px; background: var(--border);
+    }
 
     .card {
       background: var(--card);
@@ -209,6 +262,61 @@
     }
 
     .card:hover::before { opacity: 1; }
+
+    /* Timeline dots replace the hover bar inside a spine */
+    .timeline .card::before { content: none; }
+
+    .timeline .card::after {
+      content: '';
+      position: absolute; left: -2rem; top: 1.55rem;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--card); border: 2px solid var(--border);
+      transition: all 0.25s;
+    }
+
+    .timeline .card:hover::after {
+      background: var(--accent); border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+      transform: translateX(-4px);
+    }
+
+    .card-date {
+      margin-left: auto; padding-top: 0.15rem;
+      font-size: 0.82rem; color: var(--muted);
+      white-space: nowrap; font-variant-numeric: tabular-nums;
+    }
+
+    /* Certifications */
+    .cert-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+    }
+
+    .cert-chip {
+      display: flex; align-items: center; gap: 0.9rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.9rem 1.1rem;
+      transition: all 0.25s;
+    }
+
+    .cert-chip:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .cert-chip img {
+      width: 32px; height: 32px; min-width: 32px;
+      object-fit: contain; background: #fff;
+      border-radius: 6px; padding: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .cert-chip h3 {
+      font-size: 0.92rem; font-weight: 600;
+      color: var(--primary); line-height: 1.3;
+    }
+
+    .cert-chip .cert-meta { font-size: 0.78rem; color: var(--muted); }
 
     .card-inner {
       display: flex; gap: 1.2rem; align-items: flex-start;
@@ -263,6 +371,24 @@
     .project-card:hover h3 { color: var(--accent); }
 
     .project-card p { font-size: 0.9rem; color: var(--muted); }
+
+    .project-card.featured { grid-column: span 2; }
+    .project-card.featured .project-hex { width: 80px; height: 80px; min-width: 80px; }
+    .project-card.featured h3 { font-size: 1.2rem; }
+
+    .projects-grid.past { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+
+    .project-card.past { opacity: 0.72; padding: 1.1rem 1.2rem; }
+    .project-card.past:hover { opacity: 1; }
+    .project-card.past .project-hex { width: 44px; height: 44px; min-width: 44px; }
+    .project-card.past h3 { font-size: 0.95rem; color: var(--muted); }
+    .project-card.past:hover h3 { color: var(--accent); }
+    .project-card.past p { font-size: 0.85rem; }
+
+    .subsection-note {
+      font-size: 0.85rem; color: var(--muted);
+      margin: -0.45rem 0 1.1rem;
+    }
 
     .tag {
       display: inline-block; font-size: 0.7rem; font-weight: 500;
@@ -319,6 +445,43 @@
       border-color: var(--accent);
       background: var(--accent-glow);
     }
+
+    /* Condensed article rows */
+    .pub-rows { border-top: 1px solid var(--border); }
+
+    .pub-row {
+      display: flex; gap: 1.2rem; align-items: baseline;
+      padding: 0.9rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .pub-row:hover { background: var(--accent-glow); }
+
+    .pub-year {
+      flex: 0 0 3rem; font-size: 0.82rem; color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pub-body { flex: 1; min-width: 0; }
+
+    .pub-row .pub-title {
+      font-weight: 600; color: var(--primary);
+      font-size: 0.93rem; margin-bottom: 0.15rem;
+    }
+
+    .pub-row .pub-venue {
+      font-size: 0.85rem; color: var(--accent); font-style: italic;
+    }
+
+    .pub-doi {
+      flex: 0 0 auto; font-size: 0.78rem;
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--border); border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .pub-doi:hover { border-color: var(--accent); background: var(--accent-glow); }
 
     /* Service */
     .service-grid {
@@ -413,12 +576,40 @@
       .card .org { font-size: 0.85rem; }
       .card p { font-size: 0.85rem; }
 
+      /* Hero stat strip */
+      .stat-strip { max-width: 340px; gap: 0.5rem; margin-bottom: 1.6rem; }
+      .stat { flex: 1 1 calc(50% - 0.25rem); min-width: 0; padding: 0.7rem 0.4rem; }
+      .stat .num { font-size: 1.4rem; }
+      .stat .label { font-size: 0.6rem; letter-spacing: 0.05em; }
+
+      /* Timeline */
+      .timeline { padding-left: 1.5rem; }
+      .timeline::before { left: 5px; }
+      .timeline .card::after { left: -1.5rem; top: 1.35rem; width: 12px; height: 12px; }
+
+      .card-inner { flex-wrap: wrap; }
+
+      .card-date {
+        margin-left: 0; width: 100%;
+        padding: 0 0 0 calc(36px + 0.8rem);
+        font-size: 0.78rem;
+      }
+
+      /* Certifications */
+      .cert-grid { grid-template-columns: 1fr; }
+
       /* Projects */
       .projects-grid { grid-template-columns: 1fr; }
+
+      .projects-grid.past { grid-template-columns: 1fr; }
 
       .project-card { padding: 1.2rem; }
 
       .project-hex { width: 50px; height: 50px; min-width: 50px; }
+
+      .project-card.featured { grid-column: auto; }
+      .project-card.featured .project-hex { width: 50px; height: 50px; min-width: 50px; }
+      .project-card.featured h3 { font-size: 1rem; }
 
       .cran-badges img { height: 18px; }
 
@@ -429,6 +620,11 @@
       .pub-item { padding: 1rem; }
       .pub-item .pub-title { font-size: 0.9rem; }
       .pub-item .pub-venue { font-size: 0.82rem; }
+
+      .pub-row { flex-wrap: wrap; gap: 0.4rem 0.8rem; padding: 0.9rem 0.4rem; }
+      .pub-body { flex: 1 1 100%; order: 1; }
+      .pub-year { flex: 0 0 auto; order: 2; }
+      .pub-doi { order: 3; }
 
       /* Contact */
       .contact-section { padding: 3rem 1rem; }
@@ -454,6 +650,8 @@
       .hero .links .btn { padding: 0.45rem 0.8rem; font-size: 0.75rem; }
       .card-logo { width: 30px; height: 30px; min-width: 30px; }
       .project-hex { width: 42px; height: 42px; min-width: 42px; }
+      .card-date { padding-left: calc(30px + 0.8rem); }
+      .stat .num { font-size: 1.25rem; }
     }
 
     html { scroll-behavior: smooth; }
@@ -533,6 +731,7 @@
     [data-theme="dark"] footer { background: #030712; }
     [data-theme="dark"] .btn-outline { background: var(--card); }
     [data-theme="dark"] .theme-toggle { border-color: rgba(255,255,255,0.2); }
+    [data-theme="dark"] .cert-chip img { background: #1f2937; }
 
     /* CRAN badges */
     .cran-badges {
@@ -606,6 +805,16 @@
         <img src="./headshot-400.png" alt="Paul Govan" class="headshot" onerror="this.src='https://github.com/paulgovan.png'">
       </picture>
       <h1>Paul Govan</h1>
+      <p class="summary">
+        Reliability engineer at GE Aerospace. I build open-source tools for
+        reliability, risk, and data analysis &mdash; mostly in R, lately in Swift.
+      </p>
+      <div class="stat-strip">
+        <div class="stat"><span class="num" data-stat="packages">8</span><span class="label">R packages</span></div>
+        <div class="stat"><span class="num" data-stat="publications">13</span><span class="label">Publications</span></div>
+        <div class="stat"><span class="num" data-stat="apps">3</span><span class="label">iOS apps</span></div>
+        <div class="stat"><span class="num" data-stat="certs">4</span><span class="label">Certifications</span></div>
+      </div>
       <div class="links">
         <a href="https://www.linkedin.com/in/paulgovan/" class="btn btn-brand btn-linkedin" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><use href="#icon-linkedin"></use></svg>
@@ -663,9 +872,10 @@
             <div class="card-text">
               <h3>Senior Engineer</h3>
               <span class="org">GE Aerospace</span>
-              <div class="meta">Greenville, SC &bull; 2023 &ndash; Present</div>
+              <div class="meta">Greenville, SC</div>
               <p>Reliability, Maintainability, &amp; Testability (RM&amp;T)</p>
             </div>
+            <div class="card-date">2023 &ndash; Present</div>
           </div>
         </div>
         <div class="card">
@@ -674,9 +884,10 @@
             <div class="card-text">
               <h3>Senior Technical Leader</h3>
               <span class="org">GE Vernova</span>
-              <div class="meta">Greenville, SC &bull; 2016 &ndash; 2023</div>
+              <div class="meta">Greenville, SC</div>
               <p>Reliability and Data Analytics</p>
             </div>
+            <div class="card-date">2016 &ndash; 2023</div>
           </div>
         </div>
         <div class="card">
@@ -685,9 +896,10 @@
             <div class="card-text">
               <h3>Risk Management Specialist</h3>
               <span class="org">TechnipFMC</span>
-              <div class="meta">Houston, TX &bull; 2014 &ndash; 2016</div>
+              <div class="meta">Houston, TX</div>
               <p>Risk &amp; Reliability Management</p>
             </div>
+            <div class="card-date">2014 &ndash; 2016</div>
           </div>
         </div>
         <div class="card">
@@ -696,9 +908,10 @@
             <div class="card-text">
               <h3>Graduate Assistant for Research and Teaching</h3>
               <span class="org">Texas A&amp;M University</span>
-              <div class="meta">College Station, TX &bull; 2010 &ndash; 2014</div>
+              <div class="meta">College Station, TX</div>
               <p>Texas Engineering Experiment Station</p>
             </div>
+            <div class="card-date">2010 &ndash; 2014</div>
           </div>
         </div>
         <div class="card">
@@ -707,9 +920,10 @@
             <div class="card-text">
               <h3>Civil Engineer</h3>
               <span class="org">The Shaw Group, Inc.</span>
-              <div class="meta">Baton Rouge, LA &bull; 2006 &ndash; 2009</div>
+              <div class="meta">Baton Rouge, LA</div>
               <p>Engineering &amp; Infrastructure</p>
             </div>
+            <div class="card-date">2006 &ndash; 2009</div>
           </div>
         </div>
       </div>
@@ -726,8 +940,9 @@
           <div class="card-text">
             <h3>Doctor of Philosophy</h3>
             <span class="org">Texas A&amp;M University</span>
-            <div class="meta">Zachry Department of Civil Engineering &bull; 2010 &ndash; 2014</div>
+            <div class="meta">Zachry Department of Civil Engineering</div>
           </div>
+          <div class="card-date">2010 &ndash; 2014</div>
         </div>
       </div>
       <div class="card">
@@ -736,8 +951,9 @@
           <div class="card-text">
             <h3>Master of Engineering</h3>
             <span class="org">Texas A&amp;M University</span>
-            <div class="meta">Zachry Department of Civil Engineering &bull; 2009 &ndash; 2010</div>
+            <div class="meta">Zachry Department of Civil Engineering</div>
           </div>
+          <div class="card-date">2009 &ndash; 2010</div>
         </div>
       </div>
       <div class="card">
@@ -746,8 +962,9 @@
           <div class="card-text">
             <h3>Bachelor of Science</h3>
             <span class="org">Louisiana State University</span>
-            <div class="meta">Department of Civil &amp; Environmental Engineering &bull; 2003 &ndash; 2008</div>
+            <div class="meta">Department of Civil &amp; Environmental Engineering</div>
           </div>
+          <div class="card-date">2003 &ndash; 2008</div>
         </div>
       </div>
     </div>
@@ -757,45 +974,33 @@
   <div class="section-alt">
     <section id="certifications">
       <h2>Licenses &amp; Certifications</h2>
-      <div class="timeline">
-        <div class="card">
-          <div class="card-inner">
-            <img src="./logos/ncees.png" alt="NCEES" class="card-logo" loading="lazy">
-            <div class="card-text">
-              <h3>Professional Engineer (PE)</h3>
-              <span class="org">NCEES</span>
-              <div class="meta">Issued Jan 2017</div>
-            </div>
+      <div class="cert-grid">
+        <div class="cert-chip">
+          <img src="./logos/ncees.png" alt="NCEES" loading="lazy">
+          <div>
+            <h3>Professional Engineer (PE)</h3>
+            <div class="cert-meta">NCEES &bull; Issued Jan 2017</div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-inner">
-            <img src="./logos/faa.png" alt="FAA" class="card-logo" loading="lazy">
-            <div class="card-text">
-              <h3>Remote Pilot</h3>
-              <span class="org">Federal Aviation Administration</span>
-              <div class="meta">Issued Feb 2024</div>
-            </div>
+        <div class="cert-chip">
+          <img src="./logos/faa.png" alt="FAA" loading="lazy">
+          <div>
+            <h3>Remote Pilot</h3>
+            <div class="cert-meta">Federal Aviation Administration &bull; Issued Feb 2024</div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-inner">
-            <img src="./logos/sffma.png" alt="SFFMA" class="card-logo" loading="lazy">
-            <div class="card-text">
-              <h3>Certified Firefighter</h3>
-              <span class="org">State Firefighters' &amp; Fire Marshals' Association of Texas</span>
-              <div class="meta">Issued Sep 2013</div>
-            </div>
+        <div class="cert-chip">
+          <img src="./logos/sffma.png" alt="SFFMA" loading="lazy">
+          <div>
+            <h3>Certified Firefighter</h3>
+            <div class="cert-meta">State Firefighters' &amp; Fire Marshals' Association of Texas &bull; Issued Sep 2013</div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-inner">
-            <img src="./logos/nremt.png" alt="NREMT" class="card-logo" loading="lazy">
-            <div class="card-text">
-              <h3>Emergency Medical Responder</h3>
-              <span class="org">National Registry of Emergency Medical Technicians</span>
-              <div class="meta">Issued Sep 2012</div>
-            </div>
+        <div class="cert-chip">
+          <img src="./logos/nremt.png" alt="NREMT" loading="lazy">
+          <div>
+            <h3>Emergency Medical Responder</h3>
+            <div class="cert-meta">National Registry of Emergency Medical Technicians &bull; Issued Sep 2012</div>
           </div>
         </div>
       </div>
@@ -815,66 +1020,102 @@
         </div>
       </div>
       <h3 class="pub-subsection">Articles</h3>
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-title">ReliaGrowR: Modeling and Plotting Functions for Reliability Growth Analysis</div>
-          <div class="pub-venue">Annual Reliability and Maintainability Symposium (RAMS)</div>
-          <div class="pub-meta"><span>2026</span> <a href="https://doi.org/10.1109/rams50514.2026.11424445" target="_blank" rel="noopener">DOI</a></div>
+      <div class="pub-rows">
+        <div class="pub-row">
+          <div class="pub-year">2026</div>
+          <div class="pub-body">
+            <div class="pub-title">ReliaGrowR: Modeling and Plotting Functions for Reliability Growth Analysis</div>
+            <div class="pub-venue">Annual Reliability and Maintainability Symposium (RAMS)</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.1109/rams50514.2026.11424445" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">ReliaLearnR: Learning Modules for Reliability Analysis</div>
-          <div class="pub-venue">Journal of Open Source Education</div>
-          <div class="pub-meta"><span>2026</span> <a href="https://doi.org/10.21105/jose.00302" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2026</div>
+          <div class="pub-body">
+            <div class="pub-title">ReliaLearnR: Learning Modules for Reliability Analysis</div>
+            <div class="pub-venue">Journal of Open Source Education</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.21105/jose.00302" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">ReliaShiny: A Shiny Application for Reliability Analysis</div>
-          <div class="pub-venue">IEEE Reliability Magazine</div>
-          <div class="pub-meta"><span>2026</span> <a href="https://doi.org/10.1109/MRL.2026.3669057" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2026</div>
+          <div class="pub-body">
+            <div class="pub-title">ReliaShiny: A Shiny Application for Reliability Analysis</div>
+            <div class="pub-venue">IEEE Reliability Magazine</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.1109/MRL.2026.3669057" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">Developing Management Policies and Analyzing Impact of Change Orders on Labor Productivity in Construction Projects</div>
-          <div class="pub-venue">Journal of Engineering, Design and Technology</div>
-          <div class="pub-meta"><span>2022</span> <a href="https://doi.org/10.1108/jedt-10-2020-0428" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2022</div>
+          <div class="pub-body">
+            <div class="pub-title">Developing Management Policies and Analyzing Impact of Change Orders on Labor Productivity in Construction Projects</div>
+            <div class="pub-venue">Journal of Engineering, Design and Technology</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.1108/jedt-10-2020-0428" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">Structural Network Measures for Risk Assessment of Construction Projects</div>
-          <div class="pub-venue">ASCE-ASME J. of Risk and Uncertainty in Engineering Systems, Part A</div>
-          <div class="pub-meta"><span>2020</span> <a href="https://doi.org/10.1061/AJRUA6.0001041" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2020</div>
+          <div class="pub-body">
+            <div class="pub-title">Structural Network Measures for Risk Assessment of Construction Projects</div>
+            <div class="pub-venue">ASCE-ASME J. of Risk and Uncertainty in Engineering Systems, Part A</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.1061/AJRUA6.0001041" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">BayesianNetwork: Interactive Bayesian Network Modeling and Analysis</div>
-          <div class="pub-venue">Journal of Open Source Software</div>
-          <div class="pub-meta"><span>2018</span> <a href="https://doi.org/10.21105/joss.00425" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2018</div>
+          <div class="pub-body">
+            <div class="pub-title">BayesianNetwork: Interactive Bayesian Network Modeling and Analysis</div>
+            <div class="pub-venue">Journal of Open Source Software</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.21105/joss.00425" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">eAnalytics: Dynamic Web-based Analytics for the Energy Industry</div>
-          <div class="pub-venue">Journal of Open Research Software</div>
-          <div class="pub-meta"><span>2016</span> <a href="https://doi.org/10.5334/jors.144" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2018</div>
+          <div class="pub-body">
+            <div class="pub-title">Discovering the Impact of Late Change Orders and Rework on Labor Productivity: A Water Treatment Case Study Analysis Using System Dynamics Modeling</div>
+            <div class="pub-venue">Construction Research Congress (ASCE)</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.1061/9780784481295.069" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">The Resource-based View on Project Risk Management</div>
-          <div class="pub-venue">Journal of Construction Engineering and Management</div>
-          <div class="pub-meta"><span>2016</span> <a href="https://doi.org/10.1061/(ASCE)CO.1943-7862.0001136" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2016</div>
+          <div class="pub-body">
+            <div class="pub-title">eAnalytics: Dynamic Web-based Analytics for the Energy Industry</div>
+            <div class="pub-venue">Journal of Open Research Software</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.5334/jors.144" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">Discovering the Impact of Late Change Orders and Rework on Labor Productivity: A Water Treatment Case Study Analysis Using System Dynamics Modeling</div>
-          <div class="pub-venue">Construction Research Congress (ASCE)</div>
-          <div class="pub-meta"><span>2018</span> <a href="https://doi.org/10.1061/9780784481295.069" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2016</div>
+          <div class="pub-body">
+            <div class="pub-title">The Resource-based View on Project Risk Management</div>
+            <div class="pub-venue">Journal of Construction Engineering and Management</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.1061/(ASCE)CO.1943-7862.0001136" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">Causal Network Methods for Project Risk-based Decision Making</div>
-          <div class="pub-venue">INFORMS Annual Meeting</div>
-          <div class="pub-meta"><span>2014</span> <a href="https://doi.org/10.5281/zenodo.1145391" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2014</div>
+          <div class="pub-body">
+            <div class="pub-title">Causal Network Methods for Project Risk-based Decision Making</div>
+            <div class="pub-venue">INFORMS Annual Meeting</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.5281/zenodo.1145391" target="_blank" rel="noopener">DOI</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">Causal Network Methods for Integrated Project Portfolio Risk Analysis</div>
-          <div class="pub-venue">Texas A&amp;M University (Dissertation)</div>
-          <div class="pub-meta"><span>2014</span> <a href="https://hdl.handle.net/1969.1/153492" target="_blank" rel="noopener">Handle</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2014</div>
+          <div class="pub-body">
+            <div class="pub-title">Causal Network Methods for Integrated Project Portfolio Risk Analysis</div>
+            <div class="pub-venue">Texas A&amp;M University (Dissertation)</div>
+          </div>
+          <a class="pub-doi" href="https://hdl.handle.net/1969.1/153492" target="_blank" rel="noopener">Handle</a>
         </div>
-        <div class="pub-item">
-          <div class="pub-title">Benchmarking Natural Gas Pipeline Projects</div>
-          <div class="pub-venue">ASCE Pipelines Conference</div>
-          <div class="pub-meta"><span>2013</span> <a href="https://doi.org/10.1061/9780784413012.143" target="_blank" rel="noopener">DOI</a></div>
+        <div class="pub-row">
+          <div class="pub-year">2013</div>
+          <div class="pub-body">
+            <div class="pub-title">Benchmarking Natural Gas Pipeline Projects</div>
+            <div class="pub-venue">ASCE Pipelines Conference</div>
+          </div>
+          <a class="pub-doi" href="https://doi.org/10.1061/9780784413012.143" target="_blank" rel="noopener">DOI</a>
         </div>
       </div>
     </section>
@@ -884,12 +1125,14 @@
   <div class="section-alt">
   <section id="projects">
     <h2>Projects</h2>
+    <h3 class="pub-subsection">Current</h3>
+    <p class="subsection-note">Actively maintained and shipping updates.</p>
     <div class="projects-grid">
-      <a href="https://github.com/paulgovan/PRA" class="project-card" target="_blank" rel="noopener">
+      <a href="https://github.com/paulgovan/PRA" class="project-card featured" target="_blank" rel="noopener">
         <img src="./logos/PRA-hex.png" alt="PRA hex sticker" class="project-hex" loading="lazy">
         <div>
           <h3>PRA</h3>
-          <p>Quantitative tools for project risk analysis</p>
+          <p>Quantitative tools for project risk analysis &mdash; cost and schedule risk, sensitivity, and Monte Carlo simulation for R.</p>
           <div class="cran-badges">
             <img src="https://www.r-pkg.org/badges/version/PRA" alt="CRAN">
             <img src="https://cranlogs.r-pkg.org/badges/grand-total/PRA" alt="Downloads">
@@ -918,28 +1161,6 @@
           </div>
         </div>
       </a>
-      <a href="https://github.com/paulgovan/BayesianNetwork" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/BayesianNetwork-hex.png" alt="BayesianNetwork hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>BayesianNetwork</h3>
-          <p>Interactive Bayesian network modeling and visualization.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/BayesianNetwork" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork" alt="Downloads">
-          </div>
-        </div>
-      </a>
-      <a href="https://github.com/paulgovan/eAnalytics" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/eAnalytics-hex.png" alt="eAnalytics hex sticker" class="project-hex" loading="lazy">
-        <div>
-          <h3>eAnalytics</h3>
-          <p>Dynamic web-based analytics for the energy industry.</p>
-          <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/eAnalytics" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/eAnalytics" alt="Downloads">
-          </div>
-        </div>
-      </a>
       <a href="https://github.com/paulgovan/ReliaLearnR" class="project-card" target="_blank" rel="noopener">
         <img src="./logos/ReliaLearnR-hex.png" alt="ReliaLearnR hex sticker" class="project-hex" loading="lazy">
         <div>
@@ -948,6 +1169,17 @@
           <div class="cran-badges">
             <img src="https://www.r-pkg.org/badges/version/ReliaLearnR" alt="CRAN">
             <img src="https://cranlogs.r-pkg.org/badges/grand-total/ReliaLearnR" alt="Downloads">
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/paulgovan/ReliaPlotR" class="project-card" target="_blank" rel="noopener">
+        <img src="./logos/ReliaPlotR-hex.png" alt="ReliaPlotR hex sticker" class="project-hex" loading="lazy">
+        <div>
+          <h3>ReliaPlotR</h3>
+          <p>Reliability plotting tools for survival and failure data.</p>
+          <div class="cran-badges">
+            <img src="https://www.r-pkg.org/badges/version/ReliaPlotR" alt="CRAN">
+            <img src="https://cranlogs.r-pkg.org/badges/grand-total/ReliaPlotR" alt="Downloads">
           </div>
         </div>
       </a>
@@ -963,7 +1195,7 @@
         <img src="./logos/cadence-icon.png" alt="Cadence app icon" class="project-hex" style="border-radius: 14px;" loading="lazy">
         <div>
           <h3>Cadence</h3>
-          <p>An iOS app combining bilateral visualization and guided breathwork for grounding, focus, and relaxation.</p>
+          <p>Bilateral visualization and guided breathwork for grounding, focus, and relaxation.</p>
           <span class="tag">Swift</span><span class="tag">iOS</span>
         </div>
       </a>
@@ -975,25 +1207,38 @@
           <span class="tag">Swift</span><span class="tag">iOS</span>
         </div>
       </a>
-      <a href="https://github.com/paulgovan/AutoDeskR" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/sticker2_building.png" alt="AutoDeskR hex sticker" class="project-hex" loading="lazy">
+    </div>
+
+    <h3 class="pub-subsection">Past</h3>
+    <p class="subsection-note">No longer actively maintained, but still on CRAN.</p>
+    <div class="projects-grid past">
+      <a href="https://github.com/paulgovan/BayesianNetwork" class="project-card past" target="_blank" rel="noopener">
+        <img src="./logos/BayesianNetwork-hex.png" alt="BayesianNetwork hex sticker" class="project-hex" loading="lazy">
         <div>
-          <h3>AutoDeskR</h3>
-          <p>An R interface to the AutoDesk platform</p>
+          <h3>BayesianNetwork</h3>
+          <p>Interactive Bayesian network modeling and visualization.</p>
           <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/AutoDeskR" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/AutoDeskR" alt="Downloads">
+            <img src="https://www.r-pkg.org/badges/version/BayesianNetwork" alt="CRAN">
           </div>
         </div>
       </a>
-      <a href="https://github.com/paulgovan/ReliaPlotR" class="project-card" target="_blank" rel="noopener">
-        <img src="./logos/ReliaPlotR-hex.png" alt="ReliaPlotR hex sticker" class="project-hex" loading="lazy">
+      <a href="https://github.com/paulgovan/eAnalytics" class="project-card past" target="_blank" rel="noopener">
+        <img src="./logos/eAnalytics-hex.png" alt="eAnalytics hex sticker" class="project-hex" loading="lazy">
         <div>
-          <h3>ReliaPlotR</h3>
-          <p>Reliability plotting tools for survival and failure data.</p>
+          <h3>eAnalytics</h3>
+          <p>Dynamic web-based analytics for the energy industry.</p>
           <div class="cran-badges">
-            <img src="https://www.r-pkg.org/badges/version/ReliaPlotR" alt="CRAN">
-            <img src="https://cranlogs.r-pkg.org/badges/grand-total/ReliaPlotR" alt="Downloads">
+            <img src="https://www.r-pkg.org/badges/version/eAnalytics" alt="CRAN">
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/paulgovan/AutoDeskR" class="project-card past" target="_blank" rel="noopener">
+        <img src="./logos/sticker2_building.png" alt="AutoDeskR hex sticker" class="project-hex" loading="lazy">
+        <div>
+          <h3>AutoDeskR</h3>
+          <p>An R interface to the AutoDesk platform.</p>
+          <div class="cran-badges">
+            <img src="https://www.r-pkg.org/badges/version/AutoDeskR" alt="CRAN">
           </div>
         </div>
       </a>
@@ -1111,18 +1356,41 @@
     }
     updateToggleIcons(saved);
 
+    // Hero stats — counted from the page so they can't go stale
+    function countStats() {
+      const q = sel => document.querySelectorAll(sel).length;
+      const iosApps = Array.from(document.querySelectorAll('#projects .project-card'))
+        .filter(c => Array.from(c.querySelectorAll('.tag'))
+          .some(t => t.textContent.trim() === 'iOS')).length;
+
+      const counts = {
+        packages: q('#projects .cran-badges'),
+        publications: q('#publications .pub-item') + q('#publications .pub-row'),
+        apps: iosApps,
+        certs: q('#certifications .cert-chip')
+      };
+
+      document.querySelectorAll('.stat .num').forEach(el => {
+        const n = counts[el.dataset.stat];
+        if (n) el.textContent = n;
+      });
+    }
+    countStats();
+
     // Scroll animations — only hide elements below the fold, reveal on scroll
     const viewH = window.innerHeight;
     const animItems = [];
 
     document.querySelectorAll(
-      'section h2, .card, .pub-item, .project-card, .contact-inner'
+      'section h2, .card, .cert-chip, .pub-item, .pub-row, .project-card, .contact-inner'
     ).forEach(el => {
       if (el.getBoundingClientRect().top > viewH - 40) {
         el.classList.add('animate-in');
         // Stagger siblings
         const siblings = Array.from(el.parentElement.children).filter(
-          c => c.classList.contains('card') || c.classList.contains('pub-item') || c.classList.contains('project-card')
+          c => c.classList.contains('card') || c.classList.contains('cert-chip') ||
+               c.classList.contains('pub-item') || c.classList.contains('pub-row') ||
+               c.classList.contains('project-card')
         );
         const idx = siblings.indexOf(el);
         if (idx >= 0) el.style.transitionDelay = idx * 0.06 + 's';
@@ -1147,11 +1415,32 @@
     window.addEventListener('scroll', revealOnScroll, { passive: true });
     revealOnScroll();
 
-    // Back to top
+    // Back to top + nav scroll-spy
     const btn = document.querySelector('.back-to-top');
-    window.addEventListener('scroll', () => {
+    const navLinks = Array.from(document.querySelectorAll('nav ul a[href^="#"]'));
+    const spy = navLinks
+      .map(a => ({ link: a, target: document.getElementById(a.hash.slice(1)) }))
+      .filter(e => e.target);
+
+    function onScroll() {
       btn.classList.toggle('show', window.scrollY > 600);
-    });
+
+      let active = null;
+      for (const entry of spy) {
+        if (entry.target.getBoundingClientRect().top <= 120) active = entry.link;
+      }
+
+      // Contact is the last and shortest section, so the page bottoms out
+      // before it can reach the threshold — light it up on the way out.
+      const atBottom = window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+      if (atBottom && spy.length) active = spy[spy.length - 1].link;
+
+      navLinks.forEach(a => a.classList.toggle('active', a === active));
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   </script>
 
 </body>

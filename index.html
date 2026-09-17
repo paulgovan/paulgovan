@@ -349,11 +349,6 @@
     .hex-tile { width: var(--hex-w); height: var(--hex-h); }
     .hex-tile img { width: 100%; height: 100%; object-fit: contain; }
 
-    .hive.past-hive .tile { opacity: 0.7; }
-    .hive.past-hive .tile:hover,
-    .hive.past-hive .tile:focus-visible,
-    .hive.past-hive .tile.active { opacity: 1; }
-
     .app-row { display: flex; justify-content: center; gap: 1.6rem; flex-wrap: wrap; }
 
     .app-tile { width: 112px; }
@@ -1132,8 +1127,7 @@
   <div class="section-alt">
   <section id="projects">
     <h2>Projects</h2>
-    <h3 class="pub-subsection">Current</h3>
-    <p class="subsection-note">Actively maintained and shipping updates. Select a tile for details.</p>
+    <p class="subsection-note">Select a tile for details.</p>
     <div class="group-label">R packages</div>
     <div class="hive">
       <div class="hive-row">
@@ -1170,6 +1164,26 @@
           <img src="./logos/ReliaPlotR-hex.png" alt="ReliaPlotR hex sticker" loading="lazy">
         </button>
       </div>
+      <div class="hive-row">
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="BayesianNetwork" data-pkg="BayesianNetwork" data-tags="Maintenance mode"
+                data-desc="Interactive Bayesian network modeling and visualization."
+                data-url="https://github.com/paulgovan/BayesianNetwork" data-link="View on GitHub">
+          <img src="./logos/BayesianNetwork-hex.png" alt="BayesianNetwork hex sticker" loading="lazy">
+        </button>
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="eAnalytics" data-pkg="eAnalytics" data-tags="Maintenance mode"
+                data-desc="Dynamic web-based analytics for the energy industry."
+                data-url="https://github.com/paulgovan/eAnalytics" data-link="View on GitHub">
+          <img src="./logos/eAnalytics-hex.png" alt="eAnalytics hex sticker" loading="lazy">
+        </button>
+        <button type="button" class="tile hex-tile" aria-expanded="false"
+                data-name="AutoDeskR" data-pkg="AutoDeskR" data-tags="Maintenance mode"
+                data-desc="An R interface to the AutoDesk platform."
+                data-url="https://github.com/paulgovan/AutoDeskR" data-link="View on GitHub">
+          <img src="./logos/sticker2_building.png" alt="AutoDeskR hex sticker" loading="lazy">
+        </button>
+      </div>
     </div>
     <div class="group-label">iOS apps</div>
     <div class="app-row">
@@ -1194,33 +1208,6 @@
         <img src="./logos/forge90-icon.png" alt="Forge90 app icon" loading="lazy">
         <span class="app-name">Forge90</span>
       </button>
-    </div>
-
-    <h3 class="pub-subsection">Past</h3>
-    <p class="subsection-note">No longer actively maintained, but still on CRAN.</p>
-    <div class="hive past-hive">
-      <div class="hive-row">
-        <button type="button" class="tile hex-tile" aria-expanded="false"
-                data-name="BayesianNetwork" data-pkg="BayesianNetwork"
-                data-desc="Interactive Bayesian network modeling and visualization."
-                data-url="https://github.com/paulgovan/BayesianNetwork" data-link="View on GitHub">
-          <img src="./logos/BayesianNetwork-hex.png" alt="BayesianNetwork hex sticker" loading="lazy">
-        </button>
-        <button type="button" class="tile hex-tile" aria-expanded="false"
-                data-name="eAnalytics" data-pkg="eAnalytics"
-                data-desc="Dynamic web-based analytics for the energy industry."
-                data-url="https://github.com/paulgovan/eAnalytics" data-link="View on GitHub">
-          <img src="./logos/eAnalytics-hex.png" alt="eAnalytics hex sticker" loading="lazy">
-        </button>
-      </div>
-      <div class="hive-row">
-        <button type="button" class="tile hex-tile" aria-expanded="false"
-                data-name="AutoDeskR" data-pkg="AutoDeskR"
-                data-desc="An R interface to the AutoDesk platform."
-                data-url="https://github.com/paulgovan/AutoDeskR" data-link="View on GitHub">
-          <img src="./logos/sticker2_building.png" alt="AutoDeskR hex sticker" loading="lazy">
-        </button>
-      </div>
     </div>
 
     <div class="tile-pop" role="dialog" aria-label="Project details" hidden>

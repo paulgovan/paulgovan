@@ -528,6 +528,39 @@
       display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;
     }
 
+    /* Related Links */
+    .links-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .link-card {
+      display: flex; flex-direction: column;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none; color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      color: inherit;
+    }
+
+    .link-preview {
+      width: 100%; height: 220px;
+      object-fit: cover; object-position: center;
+    }
+
+    .link-info { padding: 1rem 1.2rem; }
+
+    .link-card h3 { font-size: 1rem; margin-bottom: 0.15rem; }
+
+    .link-url { font-size: 0.85rem; color: var(--accent); }
+
     /* Footer */
     footer {
       text-align: center; padding: 1.5rem;
@@ -800,6 +833,7 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#service">Service</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="#links">Links</a></li>
       <li>
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
           <svg class="sun-icon" viewBox="0 0 24 24" style="display:none;"><path d="M12 18a6 6 0 110-12 6 6 0 010 12zm0-2a4 4 0 100-8 4 4 0 000 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"/></svg>
@@ -1302,6 +1336,27 @@
       </div>
     </div>
   </div>
+
+  <!-- Related Links -->
+  <section id="links">
+    <h2>Related Links</h2>
+    <div class="links-grid">
+      <a href="https://gardenhillsc.com" class="link-card" target="_blank" rel="noopener">
+        <img src="./logos/gardenhillsc-preview.jpg" alt="Garden Hill Farm website preview" class="link-preview" loading="lazy">
+        <div class="link-info">
+          <h3>Garden Hill Farm</h3>
+          <span class="link-url">gardenhillsc.com</span>
+        </div>
+      </a>
+      <a href="https://magnoliaequinevet.com" class="link-card" target="_blank" rel="noopener">
+        <img src="./logos/magnoliaequine-preview.jpg" alt="Magnolia Equine Veterinary Services website preview" class="link-preview" loading="lazy">
+        <div class="link-info">
+          <h3>Magnolia Equine Veterinary Services</h3>
+          <span class="link-url">magnoliaequinevet.com</span>
+        </div>
+      </a>
+    </div>
+  </section>
 
   <!-- Back to top -->
   <button class="back-to-top" onclick="window.scrollTo({top:0})" aria-label="Back to top">
